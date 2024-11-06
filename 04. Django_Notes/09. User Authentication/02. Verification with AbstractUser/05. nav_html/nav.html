@@ -1,0 +1,22 @@
+{% if user.is_authenticated %}
+<li class="nav-item">
+    <a class="border border-primary p-2"> Hi {{user.first_name}}</a>
+</li>
+<li class="nav-item">
+
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+    </li>
+<li class="nav-item">
+
+{% else %}
+
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'register' %}">Resister</a>
+    </li>
+<li class="nav-item">
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'login' %}">User Login</a>
+</li>
+
+{% endif %}

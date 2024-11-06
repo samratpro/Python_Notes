@@ -1,0 +1,16 @@
+<nav>
+    <ul>
+        {% for item in nav_items %}
+            <li>
+                <a href="{{ item.url }}">{{ item.title }}</a>
+                {% if item.children.all %}
+                    <ul>
+                        {% for child in item.children.all %}
+                            <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

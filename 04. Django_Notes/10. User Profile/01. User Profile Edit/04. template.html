@@ -1,0 +1,111 @@
+
+{% extends 'dashboard.html' %}
+{% load static %}
+{% block dashcontent %}
+        
+<div class="container rounded mb-5">
+    <div class="row">
+        <div class="col-md-4 bg-white border rounded m-2">
+            <div class="d-flex flex-column align-items-center py-2 mx-3 pb-4">
+                {% if user_profile.profile_image %}
+                    <img class="rounded-circle my-4" width="130px" height="130px" src="{{user_profile.profile_image.url}}">
+                {% endif %}
+                
+                <span class="text-black-80 fs-3 py-2 px-3 my-1 border rounded">Name : {{user_profile.first_name}} {{user_profile.last_name}}</span>
+                <span class="text-black-80 fs-3 py-2 px-3 my-1 border rounded">Email : {{user_profile.email}}</span>
+                <span class="text-black-80 fs-3 py-2 px-3 my-1 border rounded">Deparment : {{user_profile.deperment}}</span>
+                <span class="text-black-80 fs-3 py-2 px-3 my-1 border rounded">Semester : {{user_profile.semester}}</span>
+                <span class="text-black-80 fs-3 py-2 px-3 my-1 border rounded">Admission Year : {{user_profile.admission_year}}</span>
+            </div>
+        </div>
+
+        <div class="col-md-7 bg-white border rounded m-2 ps-3">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="p-3">
+
+                        <div class="mb-3">
+                            <div class="col-md-7">
+                                <label for="" class="form-label">Profile image</label>
+                                <input name="img_upload" type="file" class="form-control" accept="image/jpeg, image/png"/>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-2">
+                            <div class="col-md-7">
+                                <label class="form-label">First name</label>
+                                <input type="text" name="first_name" class="form-control" value="{{user_profile.first_name}}" value="">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-7">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" name="last_name" class="form-control" value="{{user_profile.last_name}}">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-7">
+                                <label class="form-label">Email ID</label>
+                                <input type="email" name="email" class="form-control" value="{{user_profile.email}}" required>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-7">
+                                <label class="form-label">Admission Year</label>
+                                <input type="text" name="admission_year" class="form-control" value="{{user_profile.admission_year}}" maxlength="4">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-7">
+                                <label class="form-label">Select Deparment</label>
+                                <select name="deparment" class="form-select" aria-label="Default select example">
+                                    {% for deparment in all_deparment  %}
+                                    <option value="{{deparment.id}}">{{deparment.deperment_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-7">
+                                <label class="form-label">Select Semester</label>
+                                <select name="semester" class="form-select" aria-label="Default select example">
+                                    {% for semseter in all_semseter  %}
+                                    <option value="{{semseter.id}}">{{semseter.semester_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-7">
+                                <label class="form-label">Update Password</label>
+                                <input type="Password" name="password1" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-3">
+                            <div class="col-md-7">
+                                <label class="form-label">Confirm Update Password</label>
+                                <input type="Password" name="password2" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-7"><button class="btn btn-primary profile-button" type="submit">Update Profile</button></div>
+                        </div>
+
+                </div>
+
+            </form>
+      </div>
+
+    </div>
+</div>
+
+
+
+{% endblock dashcontent %}
+
+

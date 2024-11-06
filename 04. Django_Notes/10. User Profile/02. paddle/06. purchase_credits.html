@@ -1,0 +1,102 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% block dashcontent %}
+        
+ 
+<div class="rounded mb-5 ms-2 mt-3">
+  <h1 class="h4 py-3 mt-1 mb-0 ms-3 text-center">Please Choose a Package</h1>
+</div>
+
+
+<div class="container rounded mb-5">
+  <form method="post" action="{% url 'purchase_credits' %}">
+    {% csrf_token %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for package in credit_packages %}
+        <div class="col">
+          <div class="card">
+            <div class="card-body text-center border border-rounded">
+              <h5 class="card-title px-3 py-2 mt-1">{{ package.name }} </h5>
+              <span class="card-text d-block py-2 mt-1">{{ package.price }} USD </span>
+              <span class="card-text d-block py-2 mt-1">{{ package.credits }} credits</span>
+              <!-- openCheckout is paddlejs method  -->
+              <a href="#" class="my-3 btn btn-primary" onclick="openCheckout('{{package.product_id}}','{{request.user.email}}')">Buy Now!</a>
+              <!-- for sending product id when rest api request for purchase credit  -->
+              <span id="product-id" style="display:none">{{package.product_id}}</span>    
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </form>
+</div>
+
+
+<!-- import paddle cdn and initialize checkout process -->
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+<script type="text/javascript">
+        Paddle.Environment.set("sandbox");   // Remove this when use live account **********************
+        Paddle.Initialize({
+          token: "{{paddle_token.client_token}}",
+          eventCallback: function(data) {
+              // Log data for debugging
+              console.log("Paddle Event:", data);
+
+              // Handle checkout completion event
+              if (data.name == "checkout.completed") {
+                const productId = document.getElementById("product-id").innerText; // Assuming this is coming from Django context
+                const transaction_id = data.data.transaction_id; // This comes from the Paddle event data
+            
+                // Send data to the Django view via AJAX
+                fetch("{% url 'paddle_webhook' %}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": getCookie('csrftoken')
+                    },
+                    body: JSON.stringify({
+                        productId: productId,
+                        transaction_id: transaction_id
+                    })
+                })
+                .then(response => {
+                  if (response.ok){
+                    window.location.href = "{% url 'profile' %}"
+                  }else{
+                    alert("There was an issue with your purchase.");
+                    window.location.href = "{% url 'purchase_credits' %}"
+                  }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+            }
+          }
+      });
+  // Cookie parser for CSRF token 
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+</script>
+
+
+<!-- Paddle js checkout overly  -->
+<script type="text/javascript">
+        function openCheckout(item, customerMail) {
+        let itemsList = [{priceId: item, quantity: 1}];
+        let customerInfo = {email:customerMail,address: {countryCode: "US",postalCode: "10021"}};
+        Paddle.Checkout.open({
+          settings: {
+            displayMode: "overlay",
+            theme: "light",
+            locale: "en",
+          },
+            items: itemsList,
+            customer: customerInfo
+        });
+        }
+</script>
+
+{% endblock dashcontent %}

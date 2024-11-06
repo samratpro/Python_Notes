@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messaging App</title>
+</head>
+<body>
+    <h1>User 1</h1>
+    <div id="user1Messages"></div>
+    <form id="user1Form">
+        <input type="hidden" name="conversation_id" value="1">
+        <input type="hidden" name="sender" value="User 1">
+        <label for="user1Message">Message:</label>
+        <input type="text" id="user1Message" name="text">
+        <button type="submit">Send</button>
+    </form>
+
+    <h1>User 2</h1>
+    <div id="user2Messages"></div>
+    <form id="user2Form">
+        <input type="hidden" name="conversation_id" value="2">
+        <input type="hidden" name="sender" value="User 2">
+        <label for="user2Message">Message:</label>
+        <input type="text" id="user2Message" name="text">
+        <button type="submit">Send</button>
+    </form>
+
+    <script>
+        async function getMessages(conversationId, containerId) {
+            const response = await fetch(`/get-messages/${conversationId}/`);
+            const data = await response.json();
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            data.messages.forEach(message => {
+                container.innerHTML += `<p><strong>${message.sender}:</strong> ${message.text}</p>`;
+            });
+        }
+
+        document.getElementById('user1Form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            try {
+                const response = await fetch('/send-message/', {
+                    method: 'POST',
+                    body: formData,
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to send message');
+                }
+                await getMessages(1, 'user1Messages');
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        document.getElementById('user2Form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            try {
+                const response = await fetch('/send-message/', {
+                    method: 'POST',
+                    body: formData,
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to send message');
+                }
+                await getMessages(2, 'user2Messages');
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // Initial display of messages
+        getMessages(1, 'user1Messages');
+        getMessages(2, 'user2Messages');
+    </script>
+</body>
+</html>

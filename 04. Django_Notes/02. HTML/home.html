@@ -1,0 +1,12 @@
+{% extends 'base.html' %}             <!--  .........................................   {% extends 'base.html' %} is to inharite base.html file -->
+{% load static %}                     <!--  .........................................   {% load static %}  must have after extends -->
+{% block meta %}
+ <title> Meta Title </title>
+{% endblock %}
+{% block content %}                   <!--  .........................................   {% block content %} is to inharite content section -->
+<div>
+{% if result %}                       <!-- ............................................ Result come from View context data -->
+  <div class="container"></div>
+{% endif %}
+</div>
+{% endblock %}

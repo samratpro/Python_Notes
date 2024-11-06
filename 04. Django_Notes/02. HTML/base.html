@@ -1,0 +1,24 @@
+<!-- Base.html File -->
+
+{% load static %}          <!--  ...................................................... {% load static %} is for calling static method -->
+!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href=" {% static 'css/style.css' %} ">       <!-- .......... static css, js, images -->
+    {% block meta %}{% endblock %}
+</head>
+<body>
+  <header>
+      <nav> 
+          <a href=" {% url 'home' %} "> </a>        <!--  ............................. Home is Render Function from View, and Urls -->
+      </nav>
+    </header>
+  <main>
+      
+    {% block content %}        <!-- ................................................... We can use "body" or anything instead of content -->               
+    {% endblock %}
+      
+  </main>
+  <footer></footer>
+</body>
+</html>

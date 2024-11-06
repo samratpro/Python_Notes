@@ -1,0 +1,38 @@
+<!-- Post Method -->
+<form action="" method="post">
+                                 <!-- Warning ........................................ form="usrform" We can't use like this type in our HTML element -->
+{% csrf_token %}                 <!-- ................................................ {% csrf_token %} is mendatory for post method -->
+    <input name="Name">          <!-- ................................................ name="value" will pass as a veriable -->
+    <input name="Phone">
+    <input name="Email">
+    <select name="type" >                               <!-- ......................... We can pass optional value -->
+        <option value="service"> Service </option>       
+        <option value="query"> General Query </option>
+    </select>
+    <textarea name="comment"> Massage </textarea>
+    <button type="submit"> Send Message </button>      <!-- .......................... type="submit" is mendatory -->
+</form>
+
+
+<!-- Get Method -->
+
+<form action="" method="get">
+    <input name="Name">          <!-- ................................................ name="value" will pass as a veriable -->
+    <input name="Phone">
+    <input name="Email">
+    <select name="type" >                               <!-- ......................... We can pass optional value -->
+        <option value="service"> Service </option>       
+        <option value="query"> General Query </option>
+    </select>
+    <textarea name="comment"> Massage </textarea>
+    <button type="submit"> Send Message </button>      <!-- .......................... type="submit" is mendatory -->
+</form>
+
+
+
+<!-- Current URL condition -->
+class="{% if request.resolver_match.url_name == "urlname" %} actv {% endif %}"    <!-- ......  "urlname" is URL's Function name and "actv" is HTML class --> 
+
+
+<!-- For Loop list -->
+https://fedingo.com/how-to-loop-through-list-in-django-template/

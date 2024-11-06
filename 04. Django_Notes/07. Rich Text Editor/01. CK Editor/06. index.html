@@ -1,0 +1,8 @@
+<script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+
+<textarea name="content" id="id_content">{{context.content }}</textarea>
+<script>
+    CKEDITOR.replace('id_content');
+</script>

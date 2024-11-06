@@ -1,0 +1,61 @@
+<div>
+    <input type="text" name="keyword" class="form-control" id="keywordInput">
+    <button class="btn btn-primary" id="generateTitleButton">Generate Title</button>
+</div>
+
+<div>
+   <input type="text" class="form-control" name="titleinput" id="titleInput">
+</div> 
+
+
+<div style="display: none;">
+ <p id="generateTitlecommand">{{prompts.generate_title}}</p>
+ <p id="generateoutlinecommand">{{prompts.generate_outline}}</p>
+</div>
+
+
+
+<script>
+    // For Updaing title input field when use will click on ` Generate Title ` button
+    document.getElementById('generateTitleButton').addEventListener('click', async function(event) {
+        event.preventDefault();
+        keyword = document.getElementById('keywordInput').value;
+        const input_text = document.getElementById('generateTitlecommand').textContent + keyword
+
+        if(keyword.length > 0){
+            document.getElementById('generateTitleButton').style.backgroundColor = '#44A6A3';  // Changing bg color when start working
+            document.getElementById('generateTitleButton').style.borderColor = '#44A6A3';      // Changing border color when start working
+            document.getElementById('generateTitleButton').textContent = '......';             // Changing text when start working
+
+            const response = await fetch('/api/generate-text/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({ input_text : input_text })
+            });
+
+            // response.ok will true, if return under 201 from rest_framework import status in views.py
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+        
+            const data = await response.json();
+            document.getElementById('titleInput').value = data.generated_text;
+            document.getElementById('generateTitleButton').style.backgroundColor = '#47BAB7';  // Reback bg color
+            document.getElementById('generateTitleButton').style.borderColor = '#47BAB7';      // Reback border color
+            document.getElementById('generateTitleButton').textContent = 'Generate Title';     // Reback Title
+
+       }
+    })
+
+
+// Cookie parser for CSRF token 
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+</script>

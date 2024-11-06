@@ -1,0 +1,47 @@
+<!-- Post Method -->
+<form action="" method="post">
+                                 <!-- Warning .............. form="usrform" We can't use like this type in our HTML element -->
+{% csrf_token %}                 <!-- ...................... {% csrf_token %} is mendatory for post method -->
+    <input name="Name">          <!-- ...................... name="value" will pass as a veriable -->
+    <input name="Phone">
+    <input name="Email">
+    <select name="type" >                               <!-- .. We can pass optional value -->
+        <option value="service"> Service </option>       
+        <option value="query"> General Query </option>
+    </select>
+    <textarea name="comment"> Massage </textarea>
+    <button type="submit"> Send Message </button>      <!-- ... type="submit" is mendatory and as last node of form -->
+</form>
+
+
+<!-- Get Method -->
+
+<form action="" method="get">
+    <input name="Name">          <!-- ................................................ name="value" will pass as a veriable -->
+    <input name="Phone">
+    <input name="Email">
+    <select name="type" >                               <!-- ......................... We can pass optional value -->
+        <option value="service"> Service </option>       
+        <option value="query"> General Query </option>
+    </select>
+    <textarea name="comment"> Massage </textarea>
+    <button type="submit"> Send Message </button>      <!-- .......................... type="submit" is mendatory -->
+</form>
+
+
+<!-- Two Form Submit Button -->
+<form action="" class="mb-5" method="post">
+    {% csrf_token %}
+    <!-- Other form fields -->
+    <button type="submit" name="action" value="send" id="sendBtn" class="btn brand-bg ms-3 mt-2 mb-5 px-5 py-2 fs-5">Send to Website</button>
+    <button type="submit" name="action" value="update" id="updateBtn" class="btn brand-bg ms-3 mt-2 mb-5 px-5 py-2 fs-5">Update</button>
+</form>
+
+
+
+<!-- Current URL condition -->
+class="{% if request.resolver_match.url_name == "urlname" %} actv {% endif %}"    <!-- ......  "urlname" is URL's Function name and "actv" is HTML class --> 
+
+
+<!-- For Loop list -->
+https://fedingo.com/how-to-loop-through-list-in-django-template/

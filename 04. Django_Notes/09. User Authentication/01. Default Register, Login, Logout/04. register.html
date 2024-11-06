@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container w-50">
+     
+
+    <form action="" method="post" class="border-bottom border-primary">
+        {% csrf_token %}
+        <div class="form-group mt-5">
+            <input type="text" class="form-control" name="first_name" placeholder="First Name">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="username" placeholder="User Name">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password1" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password2" placeholder="Password Again">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create Account</button>
+        </div>
+    </form>
+    <p class="mt-4"> Already have account?</p>
+    <a name="login" id="" class="btn btn-warning mt-3" href="{% url 'login' %}" role="button">Login Here</a>
+
+    <div class="mt-5 border border-primary p-5">
+     
+        {% for message in messages %}
+            <h3>{{message}}</h3>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock content %}

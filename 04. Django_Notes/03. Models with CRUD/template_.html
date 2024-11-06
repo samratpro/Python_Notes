@@ -1,0 +1,99 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+{% block dashboardcontent %}
+
+
+
+
+file_name = '''all_data_show.html'''
+<!------------ All Data Showing in For Loop --------------->
+{% for data in all_data  %}
+  <li>{{data.data_name}}</li>
+  <a href="{% url 'single_data' data.id %}"> View </a>   <!------------------ URL For Viewing Single Data  -->
+  <a href="{% url 'update_data' data.id %}"> Update </a> <!----------------- URL For Updating Single Data  -->
+
+<!----------- delete data ------------ check also view.py and urls.py ----->
+  <a class="btn btn-danger ms-3 m-1" href="{% url 'delete_completed_single_post' single_data.id %}">Delete</a>   <!-- id must be in models.py -->
+  {% endfor %}
+
+
+file_name = '''single_data.html'''
+<!-------------- Single Data Viewing Form '''HTML file''' -------------------------->
+<div class="container ps-5">
+  <div class="list-group">
+    <span class="border rounded p-2 m-1"> Date Name : {{single_data.data_name}}</span>
+    <span class="border rounded p-2 m-1"> Data Url : {{single_data.data_url}}</span>
+  </div>
+  <a class="btn btn-primary m-1" href="{% url 'update_data' single_data.id %}" role="button">Edit Data</a> <!---------------- URL For Updating Single Data  -->
+</div>
+
+
+file_name = '''update_data.html'''
+<!-------------- Data Updating Form, it will have in different '''HTML file''' -------------------------->
+<form action="" method="post" class="w-50">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ update_form.data_name }}
+        </div>
+        <div class="form-group">
+            {{ update_form.data_url }}
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Update">
+        </div>
+    </form>
+
+
+file_name = '''makingpost.html'''
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="" class="form-label">Keyword List</label>
+        <div class="form-floating">
+            <textarea name="keyword_list" class="form-control" id="floatingTextarea2" style="height: 300px"></textarea>
+        </div>
+       <!-------------- HTML Dropdow Selection one_to_one or many_to_many or Forignkey relation -------------------------->
+       <!-------------- views.py  grab website url``` website_url = WesiteModel.objects.get(pk=website_id).website_url ```  -------------------------->
+        <select name="website_id" class="form-select mt-3" aria-label="Default select example">
+            <label class="form-label">Select Website</label>
+            {% for single_website in website  %}
+            <option value="{{single_website.id}}">{{single_website.website_name}}</option>
+            {% endfor %}
+        </select>
+
+        <select name="openaiapi_id" class="form-select mt-3" aria-label="Default select example">
+            <label class="form-label">Select OpenAI API</label>
+            {% for single_openaiapi in openaiapi  %}
+            <option value="{{single_openaiapi.id}}">{{single_openaiapi.name}}</option>
+            {% endfor %}
+        </select>
+
+        <select name="youtubeapi_id" class="form-select mt-3" aria-label="Default select example">
+            <label class="form-label">Select Youtube API</label>
+            {% for single_youtubeapi in youtubeapi  %}
+            <option value="{{single_youtubeapi.id}}">{{single_youtubeapi.name}}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn btn-success mt-5">Start Making Post</button>
+    
+    </form>
+</div>
+
+
+<div class="container mt-5">
+        <ul class="list-group">
+            {% for keyword in keyword_pending  %}
+            <li class="list-group-item">
+                {{keyword.name}} Status : {{keyword.status}}    
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+
+
+
+{% endblock dashboardcontent %}
+
+
+
