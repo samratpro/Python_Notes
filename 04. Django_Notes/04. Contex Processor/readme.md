@@ -29,7 +29,7 @@ class NavigationItemAdmin(admin.ModelAdmin):
 
 admin.site.register(NavigationItem, NavigationItemAdmin)
 ```
-## 03. context_processors.py
+## 03. context_processors.py in App Folder
 ```py
 from .models import NavigationItem
 
