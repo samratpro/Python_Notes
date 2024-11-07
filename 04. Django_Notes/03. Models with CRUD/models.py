@@ -34,7 +34,6 @@ class BlogPost(models.Model):
     status_choice = [('Publish', 'publish'),('Draft', 'draft'),]
     status = models.CharField( max_length=10, choices=status_choice, default='Publish')
 
-    url = models.URLField(max_length=250)
     # need to use related name when Multiple field uses same inherite modle like ` AppUser `
     author = models.ForeignKey(AppUser, related_name='written_by', on_delete=models.CASCADE, null=True, blank=True)  
     editor = models.ForeignKey(AppUser, related_name='edited_by',on_delete=models.CASCADE, null=True, blank=True) 
