@@ -1,7 +1,6 @@
 ### 00. Install Dependency
 ```bash
- pip install django-ckeditor
- pip install django-ckeditor-5
+ pip install django-ckeditor, django-ckeditor-5
  pip install pillow
 ```
 ### 01. settings.py 
