@@ -48,7 +48,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=150)
     author = models.CharField(max_length=100)
     slug = models.SlugField(max_length=150, blank=True, null=True)
-    date = models.DateTimeField(auto_now_add=True)    # automatically current date & time when a new instance of the model is created
+    publish_date = models.DateTimeField(auto_now_add=True)    # automatically current date & time when a new instance of the model is created
     expire_date = models.DateField(default=timezone.now)  # timezone.now `date` vs timezone.now() `date and time`
     modified_date = models.DateField(auto_now=True)   # Similar to auto_now_add, it's used with DateTimeField or DateField. It track the last updated 
     text = models.TextField(blank=True, null=True)
