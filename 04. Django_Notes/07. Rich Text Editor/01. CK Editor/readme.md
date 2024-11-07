@@ -144,14 +144,9 @@ urlpatterns = [
 ```
 CK 5
 ```py
-from django.conf import settings
-from django.conf.urls.static import static
-
-# [ ... ]
-
-urlpatterns += [
+urlpatterns = [
     path("ckeditor5/", include('django_ckeditor_5.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 ```
 ### 03. models.py (CK)
 CK
