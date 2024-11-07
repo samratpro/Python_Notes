@@ -73,7 +73,7 @@ from tinymce import models as tinymce_models
 class MyModel(models.Model):
     my_field = tinymce_models.HTMLField()
 ```
-### 05. index.html (CK in Frontend)
+### 05. index.html (Tinymce in Frontend)
 ```html
 <script src="{% static "tinymcejs/tinymce.min.js" %}"></script>
 
