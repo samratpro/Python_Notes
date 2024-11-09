@@ -19,7 +19,8 @@ https://chromewebstore.google.com/detail/selectorshub-xpath-helper/ndgimibanhlab
 ```
 ## 04. Find by arribute
 ```py
-(//element_name[@arribute_name="value"])[1]       # example : (//div[@class="name"])[1] , (//div[@title="name"])[1] etc
+(//element_name[@arribute_name="value"])[1]            # example : (//div[@class="name"])[1] , (//div[@title="name"])[1] etc
+//element_name[normalize-space()='inner_text']         # example : //h2[normalize-space()='Product details']
 ```
 ## 05. Find next of selected element
 ```py
