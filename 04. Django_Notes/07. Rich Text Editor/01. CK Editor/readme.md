@@ -172,13 +172,40 @@ def single_post_view(request, post_id):
     return render(request, templeate, context=context)
 ```
 ### 05. index.html (CK in Frontend)
+ck-4
 ```html
 <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
 <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
-
 
 <textarea name="content" id="id_content">{{context.content }}</textarea>
 <script>
     CKEDITOR.replace('id_content');
 </script>
+```
+ck-5
+```html
+<form method="POST">
+    <div class="ck-editor-container">
+        <textarea id="id_text" name="text" class="django_ckeditor_5"></textarea>
+        <div></div> <!-- Required empty element -->
+        <span class="word-count" id="id_text_script-word-count"></span>
+    </div>
+    <input type="hidden" id="id_text_script-ck-editor-5-upload-url" data-upload-url="/ckeditor5/image_upload/" data-csrf_cookie_name="csrf_token_name">
+    <span id="id_text_script-span">
+        <script id="id_text_script" type="application/json">{
+            "toolbar": ["heading", "|", "outdent", "indent", "|", "bold", "italic", "link", "underline", "strikethrough",
+                        "code", "subscript", "superscript", "highlight", "|", "codeBlock", "sourceEditing", "insertImage",
+                        "bulletedList", "numberedList", "todoList", "|", "blockQuote", "imageUpload", "|",
+                        "fontSize", "fontFamily", "fontColor", "fontBackgroundColor", "mediaEmbed", "removeFormat",
+                        "insertTable"]
+        }</script>
+    </span>
+</form>
+```
+
+### 06. CSS
+```css
+.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items{
+  flex-wrap: wrap!important;
+}
 ```
