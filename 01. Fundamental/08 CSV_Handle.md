@@ -176,3 +176,18 @@ while i < len(dicts['city']):
     post_run += 1
     i += 1
 ```
+## read_excel_with_openpyxl
+```
+pip install openpyxl
+```
+```py
+from openpyxl import load_workbook
+
+# Load the workbook and select a sheet
+workbook = load_workbook('your_file.xlsx')
+sheet = workbook['Sheet1']
+
+# Iterate over rows and print values
+for row in sheet.iter_rows(values_only=True):
+    print(row)
+```
