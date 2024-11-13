@@ -191,3 +191,13 @@ sheet = workbook['Sheet1']
 for row in sheet.iter_rows(values_only=True):
     print(row)
 ```
+pyinstaller
+hook-xml.py
+```py
+from PyInstaller.utils.hooks import collect_submodules
+
+hiddenimports = collect_submodules('xml.etree')
+```
+```bash
+ pyinstaller --onefile --hidden-import=openpyxl main.py
+```
