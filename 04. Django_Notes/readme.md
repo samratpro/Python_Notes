@@ -51,10 +51,8 @@ static
 🔽 logs
     console.log
 ```
-### 08. Change in static folder
-```
+### 08. Collectstatic
 Need to run this command especially when application in server
-```
 ```bash
 python manage.py collectstatic
 ```
