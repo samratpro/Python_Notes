@@ -1,5 +1,5 @@
 ### 00. Env Setup
-```basg
+```bash
 python -m venv env
 source env/scripts/activate
 ```
