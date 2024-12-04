@@ -3,7 +3,7 @@
 
 # App connection..     # Probbaly 33 line
 INSTALLED_APPS = [
-    'NewApp',
+    'NewApp',  # py manage.py startapp NewApp
 ]
 
 
@@ -15,14 +15,15 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 # Template Connection..
-DIRS': [BASE_DIR / 'templates'], # Probbaly 59 line
+DIRS: [BASE_DIR / 'templates']  # Probbaly 59 line  -- create dir name `templates` in project dir
 
 
 # Static File Connection..   # Probbaly 123 line
 # CSS, JS, Static Icon, Logo etc
 # static folder is required
 # static images will have in this folder
-STATIC_URL = '/static/'
+#  -- create dir name `static` in project dir
+STATIC_URL = '/static/'      
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -41,6 +42,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles" # for collect static
 
 # For media support, also need to create ` media  ` in media >>> ` images ` folder where have manage.py 
 # Also, need to Configure urls.py file for ` media support ` 
+#  -- create dir name `media` and sub dir -> ` images ` in project dir
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
