@@ -2,6 +2,8 @@
 ```bash
 python -m venv env
 source env/scripts/activate
+env\scripts\activate
+env\scripts\activate.ps1
 ```
 ### 01. Django install..
 ```bash
