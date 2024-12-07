@@ -24,6 +24,14 @@ class Window(QWidget):  # QWidget....................
         self.setWindowIcon(QIcon("py.png"))
 
 
+        
+        # ***************** Q Widget *********************
+        self.iconMenu = QtWidgets.QWidget(parent=self.centralwidget)
+        self.iconMenu.setMaximumSize(QtCore.QSize(55, 16777215))
+        self.iconMenu.setObjectName("iconMenu")
+        self.iconMenu.setHidden(bool)
+
+
         # ***************** Q List *********************
         layout = QVBoxLayout()
         self.list_widget = QListWidget()
