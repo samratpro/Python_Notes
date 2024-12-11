@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>LoginForm</class>
+ <widget class="QWidget" name="LoginForm">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -39,7 +39,7 @@
        <number>20</number>
       </property>
       <item alignment="Qt::AlignLeft">
-       <widget class="QLabel" name="logo">
+       <widget class="QLabel" name="LoginLogo">
         <property name="minimumSize">
          <size>
           <width>40</width>
@@ -64,7 +64,7 @@
        </widget>
       </item>
       <item alignment="Qt::AlignRight">
-       <widget class="QLabel" name="tag">
+       <widget class="QLabel" name="LoginTag">
         <property name="font">
          <font>
           <family>Poppins</family>
