@@ -141,7 +141,7 @@ class FrontPage_Window(Ui_MainWindow):
 #### 01.4 dashboard.py
 ```py
 from PyQt6 import QtCore, QtGui, QtWidgets
-from pages.memoPage import Ui_memoPageMain
+from pages.homePage import Ui_homePageMain
 
 
 class Ui_MainWindow:
