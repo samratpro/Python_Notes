@@ -104,3 +104,73 @@ window = Window()
 window.show()
 sys.exit(app.exec())
 ```
+
+
+### 01. Architecture
+#### 01.1 App.py
+```py
+from PyQt6.QtWidgets import QMainWindow, QApplication
+from front_page import FrontPage_Window
+import sys
+class Window(QMainWindow, FrontPage_Window):
+    def __init__(self):
+        super().__init__()
+        self.setGeometry(0, 0, 700, 400)
+
+app = QApplication(sys.argv)
+window = Window()
+window.show()
+sys.exit(app.exec())
+```
+#### 01.2 front_page.py
+```py
+from PyQt6.QtWidgets import QMainWindow
+from dashboard import Ui_MainWindow
+
+
+class FrontPage_Window(Ui_MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.setWindowTitle("Front Page")
+```
+#### 01.3 login.py
+```py
+...............
+```
+#### 01.4 dashboard.py
+```py
+from PyQt6 import QtCore, QtGui, QtWidgets
+from pages.memoPage import Ui_memoPageMain
+
+
+class Ui_MainWindow:
+
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.setWindowTitle("Dashboard")
+
+
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(969, 600)
+        MainWindow.setStyleSheet("*{}"")
+        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        ..............
+        self.Body = QtWidgets.QWidget(parent=self.MainBody)
+        ..........
+        self.stackedWidget.setObjectName("stackedWidget")
+
+        self.page = QtWidgets.QWidget()
+        self.page.setObjectName("page")
+        self.stackedWidget.addWidget(self.page)
+
+        # In dashboard default call Home Page
+        self.homePage = Ui_homePageMain()  # Instantiate the UI class
+        self.homePage.setupUi(self.page)  # Apply the setup to the Home page
+
+        ........................
+        self.horizontalLayout.addWidget(self.stackedWidget)
+        self.MainBody_Layout.addWidget(self.Body)
+```
