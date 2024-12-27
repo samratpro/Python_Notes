@@ -158,3 +158,51 @@ def create_img(file_path, username, password):
         # logger.info('Feature Img Done..')
         return post_id
 ```
+## 05.  Create AI Image
+```py
+import openai
+openai.api_key = "XXXXXXXXXXXXX"
+def get_image_link(prompt, size="1024x1024"):
+    """Generates an image using OpenAI's DALL·E API based on a text prompt."""
+    print(f'{datetime.now()} - Working in get image link Section...')
+    try:
+      response = openai.Image.create(
+          prompt=prompt,
+          n=1,
+          size=size
+      )
+      return response['data'][0]['url']
+    except:
+      return ''
+
+def feature_image(keyword, headers, website_url):
+    """Generates and post a feature image for a given prompt."""
+
+    prompt = "Generate a blog post image for this keyword: <<keyword>>"
+    prompt = prompt.replace('<<keyword>>', keyword)
+
+    print(f'{datetime.now()} - Working in feature image Section...')
+
+    img_url = get_image_link(prompt, size="1024x1024")
+    if len(img_url) == 0:
+        return 0
+
+    if not os.path.exists(img_path):
+        os.makedirs(img_path)
+    try:
+      headers_fox = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"}
+      response = requests.get(img_url, stream=True, headers=headers_fox)
+      local_file = open(f'{img_path}/' + keyword + '.jpg', 'wb')
+      response.raw.decode_content = True
+      shutil.copyfileobj(response.raw, local_file)
+      im = Image.open(f'{img_path}/' + keyword + '.jpg')
+      resized_im = im.resize((round(im.size[0] * 0.8), round(im.size[1] * 0.8)))
+      resized_im.save(f'{img_path}/' + keyword + '.jpg')
+      media = {'file': open(f'{img_path}/' + keyword + '.jpg', 'rb')}
+      image = requests.post(website_url + '/wp-json/wp/v2/media', headers=headers, files=media)
+      img_id = str(json.loads(image.content.decode('utf-8'))['id'])
+      return img_id
+    except Exception as ops:
+        print(f'error : {str(ops)}\n\n')
+        return 0
+```
