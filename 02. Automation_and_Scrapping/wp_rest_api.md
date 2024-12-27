@@ -1,3 +1,8 @@
+```py
+# logging
+from datetime import datetime
+print(f'{datetime.now()} - Message...')
+```
 ## 01. Simple Posting
 ```py
 import requests
