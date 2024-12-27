@@ -60,6 +60,80 @@ def create_category(cat_name, json_url, username, password):
                 if cat_name.lower() == cat['name'].lower():
                     id = str(cat['id'])
     return id
+
+
+def create_category(cat_name, website_url, username, password):
+    if not cat_name:
+        print("Category name is empty. Skipping.")
+        return None
+    id = None
+    data = {"name": cat_name}
+    try:
+        # Attempt to create the category
+        response = requests.post(f"{website_url}/wp-json/wp/v2/categories",auth=HTTPBasicAuth(username, password),json=data)
+        if response.status_code == 201:  # Category created successfully
+            id = str(response.json().get('id'))
+            print(f"Created new category '{cat_name}' with ID {id}.")
+        else:
+            # If creation fails, check if the category already exists
+            response = requests.get(f"{website_url}/wp-json/wp/v2/categories",auth=HTTPBasicAuth(username, password))
+            if response.status_code == 200:  # Successfully fetched categories
+                categories = response.json()
+                for category in categories:
+                    if cat_name.lower() == category['name'].lower():
+                        id = str(category['id'])
+                        print(f"Found existing category '{cat_name}' with ID {id}.")
+                        break
+            else:
+                print(f"Failed to fetch categories. Status code: {response.status_code}")
+    except Exception as e:
+        print(f"Error handling category '{cat_name}': {e}")
+    return id
+
+
+def create_category(cat_name, website_url, headers):
+    """
+    Create a category if it doesn't exist, or return its ID if it exists.
+    """
+    if not cat_name:
+        print("Category name is empty. Skipping.")
+        return None
+
+    id = None
+    data = {"name": cat_name}
+
+    try:
+        # Attempt to create the category
+        response = requests.post(
+            f"{website_url}/wp-json/wp/v2/categories",
+            headers=headers,
+            json=data
+        )
+
+        if response.status_code == 201:  # Category created successfully
+            id = str(response.json().get('id'))
+            print(f"Created new category '{cat_name}' with ID {id}.")
+        else:
+            # If creation fails, check if the category already exists
+            response = requests.get(
+                f"{website_url}/wp-json/wp/v2/categories",
+                headers=headers
+            )
+
+            if response.status_code == 200:  # Successfully fetched categories
+                categories = response.json()
+                for category in categories:
+                    if cat_name.lower() == category['name'].lower():
+                        id = str(category['id'])
+                        print(f"Found existing category '{cat_name}' with ID {id}.")
+                        break
+            else:
+                print(f"Failed to fetch categories. Status code: {response.status_code}")
+
+    except Exception as e:
+        print(f"Error handling category '{cat_name}': {e}")
+
+    return id
 ```
 ## 04. Create Image
 ```py
