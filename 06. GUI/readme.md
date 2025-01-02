@@ -181,6 +181,107 @@ def delete_all_data():
 delete_all_data()
 ```
 
+# SQLAlchemy Query System Cheat Sheet
+
+## Basic Querying
+| Method                         | Description                                         | Example                                                                 |
+|--------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| `session.query(Model)`         | Retrieves all rows from a table.                   | `session.query(User).all()`                                           |
+| `session.query(Model.field)`   | Retrieves specific columns.                        | `session.query(User.name).all()`                                       |
+| `.first()`                     | Returns the first result or `None`.                | `session.query(User).first()`                                         |
+| `.one()`                       | Expects exactly one result (raises error otherwise).| `session.query(User).filter(User.id == 1).one()`                       |
+| `.one_or_none()`               | Returns one result or `None`.                      | `session.query(User).filter(User.id == 99).one_or_none()`             |
+| `.count()`                     | Returns the count of rows.                         | `session.query(User).count()`                                         |
+
+---
+
+## Filtering Rows
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| `.filter()`                     | Apply conditions using comparison operators.        | `session.query(User).filter(User.age > 18).all()`                      |
+| `.filter_by()`                  | Simple equality filter (no advanced expressions).   | `session.query(User).filter_by(name="John").all()`                     |
+| `.between()`                    | Filter values in a range.                          | `session.query(User).filter(User.age.between(18, 30)).all()`           |
+| `.in_()`                        | Match a value in a list.                           | `session.query(User).filter(User.name.in_(["Alice", "Bob"])).all()`    |
+| `.like()`                       | SQL `LIKE` for pattern matching.                   | `session.query(User).filter(User.name.like("A%")).all()`               |
+| `.ilike()`                      | Case-insensitive `LIKE`.                           | `session.query(User).filter(User.name.ilike("a%")).all()`              |
+| `.is_()`                        | Check for `None` or boolean values.                | `session.query(User).filter(User.active.is_(True)).all()`              |
+| `.startswith()`/`.endswith()`   | String starts/ends with specific text.             | `session.query(User).filter(User.name.startswith("A")).all()`          |
+
+---
+
+## Combining Filters
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| `and_()`                        | Combines multiple conditions using `AND`.           | `session.query(User).filter(and_(User.age > 18, User.active == True))` |
+| `or_()`                         | Combines multiple conditions using `OR`.            | `session.query(User).filter(or_(User.age < 18, User.active == True))`  |
+| Chained `.filter()`             | Implicit `AND` by chaining `.filter()` calls.       | `session.query(User).filter(User.age > 18).filter(User.active == True)`|
+
+---
+
+## Ordering and Limiting
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| `.order_by()`                   | Sort query results.                                 | `session.query(User).order_by(User.age.desc()).all()`                  |
+| `.limit()`                      | Limit the number of rows returned.                 | `session.query(User).limit(10).all()`                                  |
+| `.offset()`                     | Skip a number of rows before returning results.     | `session.query(User).offset(5).limit(10).all()`                        |
+
+---
+
+## Joins
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| `.join()`                       | Performs an inner join.                            | `session.query(User).join(Address).all()`                              |
+| `.outerjoin()`                  | Performs an outer join.                            | `session.query(User).outerjoin(Address).all()`                         |
+
+---
+
+## Aggregations
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| `.func.count()`                 | Count rows.                                         | `session.query(func.count(User.id)).scalar()`                          |
+| `.func.sum()`                   | Sum values.                                         | `session.query(func.sum(User.age)).scalar()`                           |
+| `.func.avg()`                   | Calculate average.                                  | `session.query(func.avg(User.age)).scalar()`                           |
+
+---
+
+## Updating Rows
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| `.update()`                     | Update rows matching a filter.                     | `session.query(User).filter(User.id == 1).update({"age": 25})`         |
+| Commit changes after update.    |                                                     | `session.commit()`                                                     |
+
+---
+
+## Deleting Rows
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| `.delete()`                     | Delete rows matching a filter.                     | `session.query(User).filter(User.age < 18).delete()`                   |
+| Commit changes after delete.    |                                                     | `session.commit()`                                                     |
+
+---
+
+## Relationships
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| Access related objects.         | Use relationship fields directly.                  | `user.addresses`                                                       |
+| Eager load relationships.       | Use `.options(joinedload())`.                      | `session.query(User).options(joinedload(User.addresses)).all()`        |
+
+---
+
+## Debugging Queries
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| Log SQL queries.                | Use `echo=True` in `create_engine`.                | `create_engine("sqlite:///db.sqlite", echo=True)`                      |
+| View SQL query.                 | Compile query to string.                           | `str(query.statement.compile())`                                       |
+
+---
+
+## Transactions
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| Begin transaction.              | Start a transaction.                               | `session.begin()`                                                      |
+| Rollback changes.               | Undo all changes in transaction.                  | `session.rollback()`                                                   |
+| Commit changes.                 | Save changes to the database.                     | `session.commit()`                                                     |
 
 
 
