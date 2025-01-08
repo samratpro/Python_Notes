@@ -52,14 +52,21 @@ class Window(QWidget):  # QWidget....................
         self.setWindowIcon(QIcon("py.png"))
 
 
-    # ******************  Messagebox  ******************
-    '''
+        # ******************  Messagebox  ******************
+        '''
         QMessageBox.warning(self, 'Message')
         QMessageBox.information(self, 'Message')
         QMessageBox.question(self, 'Remove Item', 'Do you want to remove item?',
                                       QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
                                       )
-    '''
+        '''
+         self.textInput.textChanged.connect(lambda: self.make_capital(self.textInput))
+        
+    # dynamic event pass
+    def make_capital(self, element):
+        element.textChanged.disconnect()
+        element.setText(element.text().title())
+        element.textChanged.connect(lambda: self.make_capital(element))
 
      
     def mouseMoveEvent(self, e):
