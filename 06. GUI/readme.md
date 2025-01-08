@@ -203,8 +203,8 @@ delete_all_data()
 | `.between()`                    | Filter values in a range.                          | `session.query(User).filter(User.age.between(18, 30)).all()`           |
 | `.between()`                    | Filter date in a range.                            | `session.query(User).filter(Model.date_field.between(start_date.toPyDate(), end_date.toPyDate())).all()`|
 | `.in_()`                        | Match a value in a list.                           | `session.query(User).filter(User.name.in_(["Alice", "Bob"])).all()`    |
-| `.like()`                       | SQL `LIKE` for pattern matching.                   | `session.query(User).filter(User.name.like("A%")).all()`               |
-| `.ilike()`                      | Case-insensitive `LIKE`.                           | `session.query(User).filter(User.name.ilike("a%")).all()`              |
+| `.like()`                       | SQL `LIKE` for pattern matching.                   | `session.query(User).filter(User.name.like(f"%{data}%")).all()`               |
+| `.ilike()`                      | Case-insensitive `LIKE`.                           | `session.query(User).filter(User.name.ilike(f"%{data}%")).all()`              |
 | `.is_()`                        | Check for `None` or boolean values.                | `session.query(User).filter(User.active.is_(True)).all()`              |
 | `.startswith()`/`.endswith()`   | String starts/ends with specific text.             | `session.query(User).filter(User.name.startswith("A")).all()`          |
 
