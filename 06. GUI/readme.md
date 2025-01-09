@@ -182,6 +182,16 @@ delete_all_data()
 ```
 
 # SQLAlchemy Query System Cheat Sheet
+### Filter ->  when need to use operators
+Also it can pass model.entry_name argument when filtering
+```py
+users = session.query(User).filter(User.age > 30, User.name == 'John').all()
+```
+### filter_by -> Simple query by matching
+The filter_by method provides a simpler syntax for filtering based on only keyword arguments
+```py
+users = session.query(User).filter_by(name='John', age=30).all()
+```
 
 ## Basic Querying
 | Method                         | Description                                         | Example                                                                 |
