@@ -199,7 +199,7 @@ delete_all_data()
 | Method                          | Description                                         | Example                                                                 |
 |---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
 | `.filter()`                     | Apply conditions using comparison operators.        | `session.query(User).filter(User.age > 18).all()`                      |
-| `.filter_by()`                  | Simple equality filter (no advanced expressions).   | `session.query(User).filter_by(name="John").all()/.first()`                     |
+| `.filter_by()`                  | Simple equality filter (no advanced expressions).   | `session.query(User).filter_by(name="John").all().first()`                     |
 | `.between()`                    | Filter values in a range.                          | `session.query(User).filter(User.age.between(18, 30)).all()`           |
 | `.between()`                    | Filter date in a range.                            | `session.query(User).filter(Model.date_field.between(start_date.toPyDate(), end_date.toPyDate())).all()`|
 | `.in_()`                        | Match a value in a list.                           | `session.query(User).filter(User.name.in_(["Alice", "Bob"])).all()`    |
@@ -209,8 +209,21 @@ delete_all_data()
 | `.startswith()`/`.endswith()`   | String starts/ends with specific text.             | `session.query(User).filter(User.name.startswith("A")).all()`          |
 
 ---
+## Excluding
+```py
+from sqlalchemy import not_
+```
+| Method                          | Description                                         | Example                                                                 |
+|---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| `not_(Model.entry_name.in_`     | Apply excluding conditions.                         |`session.query(Model).filter(not_(Model.entry_name.in_(['field1', 'field2']))).all()`|
+| `Multiple filter`               | Apply multiple excluding conditions..               | `session.query(Model).filter(Model.amount != 0, not_(Model.entry_name.in_(['field1', 'field2']))).all()`|
+
+---
 
 ## Combining Filters
+```py
+from sqlalchemy import and_, or_
+```
 | Method                          | Description                                         | Example                                                                 |
 |---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
 | `and_()`                        | Combines multiple conditions using `AND`.           | `session.query(User).filter(and_(User.age > 18, User.active == True))` |
@@ -237,6 +250,9 @@ delete_all_data()
 ---
 
 ## Aggregations
+```py
+from sqlalchemy import func
+```
 | Method                          | Description                                         | Example                                                                 |
 |---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
 | `.func.count()`                 | Count rows.                                         | `session.query(func.count(User.id)).scalar()`                          |
