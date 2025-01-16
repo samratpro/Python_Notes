@@ -34,6 +34,7 @@ htmltag#idname
 .classname
 #idname
 #p[attribute type='attribute name']   # attribute type can be class id data_test etc
+//a[contains(@class, 'name') and contains(@class, 'name') and contains(text(), 'text name')]"
 ```
 ## 07. Find next of selected element
 ```bash
