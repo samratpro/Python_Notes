@@ -1,33 +1,34 @@
 ## 00. How to select path
-```
+```bash
 https://chromewebstore.google.com/detail/selectorshub-xpath-helper/ndgimibanhlabgdgjcpbbndiehljcpfh
 ```
 ```
 (//div[@id='idname'])[1]   //use this way is best case for single element
 ```
 ## 01. Find all element
-```py
+```bash
 //element_name        # example : //div , //p, //img
 ```
 ## 02. Find all element and select by index (1-to-targeted)
-```py
+```bash
 (//element_name)[1]   # example : (//div)[1] , (//p)[1]
 ```
 ## 03. Find all element and select by index (1-to-targeted)
-```py
+```bash
 (//element_name)[1]   # example : (//div)[1] , (//p)[1]
 ```
 ## 04. Find by arribute
-```py
+```bash
 (//element_name[@arribute_name="value"])[1]            # example : (//div[@class="name"])[1] , (//div[@title="name"])[1] etc
 //element_name[normalize-space()='inner_text']         # example : //h2[normalize-space()='Product details']
 ```
 ## 05. Find by Text
-```py
+```bash
 text='Element Text Name"
+//button[.='Post']   # if text is exist in child level element of selected element
 ```
 ## 06. Find by CSS Selector
-```py
+```bash
 htmltag.classname
 htmltag#idname
 .classname
@@ -35,7 +36,7 @@ htmltag#idname
 #p[attribute type='attribute name']   # attribute type can be class id data_test etc
 ```
 ## 07. Find next of selected element
-```py
+```bash
 //element//element                                                                  # example : //address//button
 element[arribute_name='value']                                                      # example : span[data-anonymize='email']
 (//element_name[@arribute_name="value"])[1]//element                                # example : (//div[@class="name"])[1])//li
@@ -43,7 +44,7 @@ element[arribute_name='value']                                                  
 ((//element_name[@arribute_name="value"])[1]//element[@arribute_name="value"])[1]   # example : ((//div[@class="name"])[1])//li[@id="name"])[1]
 ```
 ## 08. Loop logic
-```py
+```bash
 elements = selector_all('//any-xpath')
 for e in elements:
     print(e.text())
@@ -54,7 +55,7 @@ while i < n:
     i+=1
 ```
 ## 09. How to intertact JS click from browser devs
-```
+```bash
 - from inspect element of targeted element
 - right click > copy > copy js path
 - insert copy in JS console (F12) and add .click() function and inter
