@@ -22,7 +22,19 @@ https://chromewebstore.google.com/detail/selectorshub-xpath-helper/ndgimibanhlab
 (//element_name[@arribute_name="value"])[1]            # example : (//div[@class="name"])[1] , (//div[@title="name"])[1] etc
 //element_name[normalize-space()='inner_text']         # example : //h2[normalize-space()='Product details']
 ```
-## 05. Find next of selected element
+## 05. Find by Text
+```py
+text='Element Text Name"
+```
+## 06. Find by CSS Selector
+```py
+htmltag.classname
+htmltag#idname
+.classname
+#idname
+#p[attribute type='attribute name']   # attribute type can be class id data_test etc
+```
+## 07. Find next of selected element
 ```py
 //element//element                                                                  # example : //address//button
 element[arribute_name='value']                                                      # example : span[data-anonymize='email']
@@ -30,7 +42,7 @@ element[arribute_name='value']                                                  
 ((//element_name[@arribute_name="value"])[1]//element)[1]                           # example : ((//div[@class="name"])[1])/li)[1]
 ((//element_name[@arribute_name="value"])[1]//element[@arribute_name="value"])[1]   # example : ((//div[@class="name"])[1])//li[@id="name"])[1]
 ```
-## 06. Loop logic
+## 08. Loop logic
 ```py
 elements = selector_all('//any-xpath')
 for e in elements:
@@ -41,7 +53,7 @@ while i < n:
     print(select(f'(//path)[{str(i)}]'))
     i+=1
 ```
-## 07. How to intertact JS click from browser devs
+## 09. How to intertact JS click from browser devs
 ```
 - from inspect element of targeted element
 - right click > copy > copy js path
