@@ -220,7 +220,7 @@ users = session.query(User).filter_by(name='John', age=30).all()
 | `.in_()`                        | Match a value in a list.                           | `session.query(User).filter(User.name.in_(["Alice", "Bob"])).all()`    |
 | `.like()`                       | SQL `LIKE` for pattern matching.                   | `session.query(User).filter(User.name.like(f"%{data}%")).all()`               |
 | `.ilike()`                      | Case-insensitive `LIKE`.                           | `session.query(User).filter(User.name.ilike(f"%{data}%")).all()`              |
-| `.ilike()`                      | Case-insensitive `LIKE`.                           | `conditions=[Model.name.ilike(f"%field%"),Model.name2.ilike(f"%field2%")]\n query = session.query(Model).filter(or_(*conditions)) # or_ imported`              |
+| `multiple .ilike()`                      | Case-insensitive `LIKE`.                           | `conditions=[Model.name.ilike(f"%field%"),Model.name2.ilike(f"%field2%")]\n query = session.query(Model).filter(or_(*conditions)) # or_ imported`              |
 | `.is_()`                        | Check for `None` or boolean values.                | `session.query(User).filter(User.active.is_(True)).all()`              |
 | `.startswith()`/`.endswith()`   | String starts/ends with specific text.             | `session.query(User).filter(User.name.startswith("A")).all()`          |
 
