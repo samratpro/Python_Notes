@@ -190,6 +190,11 @@ users = session.query(User).filter(User.age > 30, User.name == 'John').all()
 ### filter_by -> Simple query by matching
 The filter_by method provides a simpler syntax for filtering based on only keyword arguments
 ```py
+from sqlalchemy.orm import sessionmaker, declarative_base
+Base = declarative_base()
+engine = create_engine('sqlite:///business.db')
+Base.metadata.create_all(self.engine)
+Session = sessionmaker(bind=self.engine)
 users = session.query(User).filter_by(name='John', age=30).all()
 ```
 
@@ -215,6 +220,7 @@ users = session.query(User).filter_by(name='John', age=30).all()
 | `.in_()`                        | Match a value in a list.                           | `session.query(User).filter(User.name.in_(["Alice", "Bob"])).all()`    |
 | `.like()`                       | SQL `LIKE` for pattern matching.                   | `session.query(User).filter(User.name.like(f"%{data}%")).all()`               |
 | `.ilike()`                      | Case-insensitive `LIKE`.                           | `session.query(User).filter(User.name.ilike(f"%{data}%")).all()`              |
+| `.ilike()`                      | Case-insensitive `LIKE`.                           | `conditions=[Model.name.ilike(f"%field%"),Model.name2.ilike(f"%field2%")]\n query = session.query(Model).filter(or_(*conditions)) # or_ imported`              |
 | `.is_()`                        | Check for `None` or boolean values.                | `session.query(User).filter(User.active.is_(True)).all()`              |
 | `.startswith()`/`.endswith()`   | String starts/ends with specific text.             | `session.query(User).filter(User.name.startswith("A")).all()`          |
 
