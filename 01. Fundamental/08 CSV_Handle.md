@@ -176,8 +176,43 @@ while i < len(dicts['city']):
     post_run += 1
     i += 1
 ```
-## read_excel_with_openpyxl
+## read_excel_with_xlsxwriter
+```bash
+pip install xlsxwriter
 ```
+Read
+```py
+from openpyxl import load_workbook
+
+# Load an existing Excel file
+workbook = load_workbook('example.xlsx')
+sheet = workbook['Data']
+
+# Read data from the worksheet
+for row in sheet.iter_rows(values_only=True):
+    print(row)
+
+```
+Write
+```py
+import xlsxwriter
+workbook = xlsxwriter.Workbook('example.xlsx')
+worksheet = workbook.add_worksheet('Data')
+data = [
+    ['Name', 'Age', 'City'],
+    ['Alice', 25, 'New York'],
+    ['Bob', 30, 'Los Angeles'],
+    ['Charlie', 35, 'Chicago']
+]
+for row_idx, row in enumerate(data):
+    for col_idx, cell in enumerate(row):
+        worksheet.write(row_idx, col_idx, cell)
+workbook.close()
+print("Excel file written successfully!")
+```
+
+## read_excel_with_openpyxl
+```bash
 pip install openpyxl
 ```
 ```py
