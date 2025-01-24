@@ -1,4 +1,4 @@
-## Basic CSV
+## 01. Basic CSV
 ```py
 import csv
 
@@ -11,7 +11,7 @@ with open("data.csv", 'w', newline='') as file:
 
 print("CSV file created successfully.")
 ```
-## Dict Writer
+## 02. Dict Writer
 ```py
 import csv
 
@@ -51,7 +51,7 @@ with open('test.csv', 'w', newline='', encoding='utf-8') as file:
     writer.writerows(dicts_list)  # Write CSV Rows
 
 ```
-## List Writer
+## 03. List Writer
 ```py
 import csv
 # field names
@@ -90,7 +90,7 @@ while start_page < targeted_page:
 		write.writerow(header)
 		write.writerows(write_list)
 ```
-## Read CSV
+## 04. Read CSV
 ```py
 import csv
 
@@ -133,7 +133,7 @@ while post_run < len(dicts):
 
   post_run += 1
 ```
-## read_csv_excel_with_pandas_for_any_language
+## 05. read_csv_excel_with_pandas_for_any_language
 ```py
 import chardet
 import pandas as pd
@@ -157,7 +157,7 @@ data_dict = csv_to_dict(file_name)
 for row in data_dict[:5]:
     print(row['Filo'])
 ```
-## read_excel_with_pandas
+## 06. read_excel_with_pandas
 ```py
 import pandas as pd
 read = pd.read_excel('/content/drive/MyDrive/Rodrigue/Data-city.xlsx')
@@ -176,7 +176,7 @@ while i < len(dicts['city']):
     post_run += 1
     i += 1
 ```
-## read_excel_with_xlsxwriter
+## 07. read_excel_with_xlsxwriter
 ```bash
 pip install xlsxwriter
 ```
@@ -211,7 +211,7 @@ workbook.close()
 print("Excel file written successfully!")
 ```
 
-## read_excel_with_openpyxl
+## 08. read_excel_with_openpyxl
 ```bash
 pip install openpyxl
 ```
