@@ -56,8 +56,11 @@ DefaultDirName={userappdata}\{#MyAppName}
 DisableDirPage=no                           # For this also user can change dir while installing software
 
 [Files]
-Source: "C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\postdb.db"; DestDir: "{commonappdata}\{#MyAppName}"; Flags: ignoreversion; Permissions: users-modify
+Source: "C:\Users\pc\Desktop\project_dir\output\dbfile.db"; DestDir: "{commonappdata}\{#MyAppName}"; Flags: ignoreversion; Permissions: users-modify
 
+for bulk icon add folder
+Source: "C:\Users\pc\Desktop\project_dir\output\icons\*.svg"; DestDir: "{app}\icons"; Flags: ignoreversion
+Source: "C:\Users\pc\Desktop\project_dir\output\images\*.png"; DestDir: "{app}\images"; Flags: ignoreversion
 Defined that this file must be modified by user or software
 
 ```
