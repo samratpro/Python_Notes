@@ -80,6 +80,70 @@ UninstallFilesDir=Uninstall\exe\{#MyAppNam}
 
 
 ```
+## Example
+```ini
+; Define application details
+#define MyAppName "Fish Dealer Software" ; Change to your application name
+#define MyAppVersion "1.5" ; Change to your application version
+#define MyAppPublisher "Osman Fish" ; Change to your publisher name
+#define MyAppURL "https://www.example.com/" ; Change to your application URL
+#define MyAppExeName "App.exe" ; Change to your main executable file name
+#define MyAppAssocName MyAppName + " File" ; Change if you want a different file association name
+#define MyAppAssocExt ".myp" ; Change to your desired file extension
+#define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt ; No need to change
+
+[Setup]
+AppId={{77B47AEF-8BD1-4F85-9E7F-DEE89A05DFC1} ; Generate a new GUID for your application
+AppName={#MyAppName} ; No need to change
+AppVersion={#MyAppVersion} ; No need to change
+AppPublisher={#MyAppPublisher} ; No need to change
+AppPublisherURL={#MyAppURL} ; No need to change
+AppSupportURL={#MyAppURL} ; No need to change
+AppUpdatesURL={#MyAppURL} ; No need to change
+DefaultDirName={userappdata}\{#MyAppName} ; Change if you want a different installation directory
+ChangesAssociations=yes ; Set to "no" if you don't want file associations
+DisableProgramGroupPage=yes ; Set to "no" if you want a program group in the Start menu
+DisableDirPage=no ; Set to "yes" if you want to hide the directory selection page
+OutputBaseFilename=mysetup ; Change to your desired setup file name
+SetupIconFile=C:\Users\pc\Desktop\fish_dealer_software\logo.ico ; Change to the path of your icon file
+WizardSmallImageFile=C:\Users\pc\Desktop\fish_dealer_software\logo.bmp ; Change to the path of your wizard image
+Compression=lzma ; No need to change
+SolidCompression=yes ; No need to change
+WizardStyle=modern ; No need to change
+UninstallFilesDir=Uninstall\exe\{#MyAppName} ; No need to change
+
+[Languages]
+Name: "english"; MessagesFile: "compiler:Default.isl" ; Add more languages if needed
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked ; Change if you want to add more tasks
+
+[Files]
+; Add your application files here
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\business.db"; DestDir: "{commonappdata}\{#MyAppName}"; Flags: ignoreversion; Permissions: users-modify ; Change the source path
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion ; Change the source path
+Source: "C:\Users\pc\Desktop\fish_dealer_software\logo.ico"; DestDir: "{app}"; Flags: ignoreversion ; Change the source path
+Source: "C:\Users\pc\Desktop\fish_dealer_software\logo.bmp"; DestDir: "{app}"; Flags: ignoreversion ; Change the source path
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\icons\*.svg"; DestDir: "{app}\icons"; Flags: ignoreversion ; Change the source path
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\images\*.png"; DestDir: "{app}\images"; Flags: ignoreversion ; Change the source path
+
+[Registry]
+; Modify file associations if needed
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
+Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".myp"; ValueData: ""
+
+[Icons]
+; Add shortcuts here
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\logo.ico" ; Change the icon path if needed
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\logo.ico"; Tasks: desktopicon ; Change the icon path if needed
+
+[Run]
+; Add post-install actions here
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+```
 ### Run 
 ```
 Now simply run for packing software
