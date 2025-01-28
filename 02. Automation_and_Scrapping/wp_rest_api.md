@@ -49,6 +49,27 @@ else:
     print(f"Failed to create post. Status code: {response.status_code}")
     print("Response:", response.json())  # Error details
 ```
+## 03. More stable way with httpx
+```py
+import httpx
+import base64
+credentials = f"{Username}:{App_pass}"
+encoded_credentials = base64.b64encode(credentials.encode('utf-8')).decode('utf-8')
+headers = {"Authorization": f"Basic {encoded_credentials}",}
+post_data = {'title': 'wp_h1',
+        'slug': 'keyword',
+        'status': 'publish',
+        'content': 'wp_post_body',
+        'format': 'standard',
+        }
+response = httpx.post(
+    website + 'wp-json/wp/v2/posts',
+    headers=headers,
+    json=post_data,
+    timeout=30
+)
+response.json()
+```
 ## 03. Create Category
 ```py
 def create_category(cat_name, json_url, username, password):
