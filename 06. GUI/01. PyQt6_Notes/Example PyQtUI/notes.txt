@@ -1,0 +1,57 @@
+1. QDate
+2. table operation, row vertical header disable, tablewidget,, itemChanged event,, set size, font, css, vartical header disabe
+3. autoCompleted text, with other filled update accroding to autoCompleted, update Completer, ((cost_entry page))
+4. Page connection
+5. authentication - login signal, username pass
+6. DB Query
+7. Logging
+8. data save, field clear and setText
+9. Signal  (pysignal, shared_signal)
+10. current date update, Date formating, icon, calender setup, CSS, date filter, date subtraction
+11. signal, click event shoul be in retranslateUi method
+13. Open Form Accpect form
+14. single profile view with session pass
+16. how to handle data save with validation before accept form information in another page,
+    handle_and_accept_information with error message
+18. Dynamic make capital or others event pass, editingFinihed or many event
+19. Row delete with many database delete
+20. confirm dailog, entry dailog before delete
+23. single page views, delete row and models entry
+24. entry disable
+25. show_error_method setup, Different type of error, info, warning, criticalerror
+26. floating toggle widget
+27. xlsxwriter
+28. Font, dynamic font add in table data
+29. Backup
+30. Print memo, update memo data also skipp rows (width : 695, height : 2000)
+31. custom font with file, combofont,
+32. auto increment
+33. make capital in add buyer form
+34. bangla font from models.py
+
+
+
+27.   Seperate homepageui.py to homepage.py
+      Folder
+        |app.py
+	|dashboard.py
+	|login.py
+	|models.py
+	|users.py
+	|py_to_ui.txt
+	|features/
+	  data_save_signal.py
+	|forms/
+	   user_add.py
+	   data_add.py
+	|icons/
+	|images/
+	|pages/
+	  homepage.py
+	  task_page.py
+	  settings_page.py
+		
+	|ui/
+	  homepage_ui.py
+	  task_page_ui.py	
+	  settings_page_ui.py
