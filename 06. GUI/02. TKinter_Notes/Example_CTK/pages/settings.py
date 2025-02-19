@@ -7,8 +7,13 @@ class SettingsPage(CTkFrame):
 
 
 
-        self.default_writing_api = 'sk-xxxxxxxxxxxxxxxxxxxxxxxxxx'
-        self.default_writing_model = 'model name'
+        self.default_chatgpt_api = 'sk-xxxxxxxxxxxxxxxxxxxxxxxxxx'
+        self.default_chatgpt_model = 'model name'
+        self.default_deepseek_api = 'sk-xxxxxxxxxxxxxxxxxxxxxxxxxx'
+        self.default_deepseek_model = 'model name'
+        self.default_gemni_api = 'sk-xxxxxxxxxxxxxxxxxxxxxxxxxx'
+        self.default_gemni_model = 'model name'
+        self.default_api_select = "ChatGPT"
         self.default_title_prompt = '''Write an SEO title about this keyword within 55 characters. The keyword must be included directly in the title keyword: ((keyword))'''
         self.default_intro_prompt = '''Write a compelling blog post introduction about the keyword: ((keyword)) The introduction should begin with technical terms related to the topic, avoiding casual phrases like "Are you...". The keyword should be naturally included throughout the introduction. Do not provide a direct solution in the intro. The final sentence should intrigue readers to continue reading the full article. Aim for a length of approximately 120 words. '''
         self.default_product_prompt = """
@@ -25,8 +30,13 @@ class SettingsPage(CTkFrame):
         cur.execute('''
                     CREATE TABLE IF NOT EXISTS Postdata (
                         ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        writing_api CHAR(200),
-                        writing_model CHAR(200),
+                        chatgpt_api CHAR(200),
+                        chatgpt_model CHAR(200),
+                        deepseek_api CHAR(200),
+                        deepseek_model CHAR(200),
+                        gemni_api CHAR(200),
+                        gemni_model CHAR(200),
+                        api_select CHAR(200),
                         title_prompt TEXT,
                         intro_prompt TEXT,
                         product_prompt TEXT,
@@ -37,14 +47,19 @@ class SettingsPage(CTkFrame):
                     )  
                     ''')
 
-        self.data_check = cur.execute('''SELECT writing_api FROM Postdata WHERE ID=1''').fetchone()
+        self.data_check = cur.execute('''SELECT chatgpt_api FROM Postdata WHERE ID=1''').fetchone()
         print(self.data_check)
 
         if self.data_check is None:
             cur.execute('''
                 INSERT INTO Postdata (
-                    writing_api,
-                    writing_model,
+                    chatgpt_api,
+                    chatgpt_model,
+                    deepseek_api,
+                    deepseek_model,
+                    gemni_api,
+                    gemni_model,
+                    api_select,
                     title_prompt,
                     intro_prompt,
                     product_prompt,
@@ -52,10 +67,15 @@ class SettingsPage(CTkFrame):
                     buying_paragraph_prompt,
                     faq_prompt,
                     conclusion_prompt
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (
-                self.default_writing_api,
-                self.default_writing_model,
+                self.default_chatgpt_api,
+                self.default_chatgpt_model,
+                self.default_deepseek_api,
+                self.default_deepseek_model,
+                self.default_gemni_api,
+                self.default_gemni_model,
+                self.default_api_select,
                 self.default_title_prompt,
                 self.default_intro_prompt,
                 self.default_product_prompt,
@@ -83,8 +103,13 @@ class SettingsPage(CTkFrame):
 
         # Create Labels and Entries for each field inside the scrollable frame
         self.fields = [
-                ("writing API", "writing_api_entry", "writing_api"),
-                ("writing model", "writing_model_entry", "writing_model"),
+                ("ChatGPT API", "chatgpt_api_entry", "chatgpt_api"),
+                ("ChatGPT model", "chatgpt_model_entry", "chatgpt_model"),
+                ("DeepSeek API", "deepseek_api_entry", "deepseek_api"),
+                ("DeepSeek model", "deepseek_model_entry", "deepseek_model"),
+                ("Gemni API", "gemni_api_entry", "gemni_api"),
+                ("Gemni model", "gemni_model_entry", "gemni_model"),
+                ("Select API", "api_select_entry", "api_select"),
                 ("title prompt", "title_prompt_entry", "title_prompt"),
                 ("intro prompt", "intro_prompt_entry", "intro_prompt"),
                 ("product prompt", "product_prompt_entry", "product_prompt"),
@@ -105,6 +130,10 @@ class SettingsPage(CTkFrame):
             elif "title" in field or "intro" in field:
                 self.entry = CTkTextbox(self.scrollable_frame, height=100, width=400)
                 self.entry.insert("1.0", str(cur.execute(f'''SELECT {db_value} FROM Postdata WHERE ID=1''').fetchone()[0]))  # Insert the value from the database
+            elif "Select" in field:
+                self.entry = CTkComboBox(self.scrollable_frame, state="readonly", values=['ChatGPT', 'DeepSeek', 'Gemni'], )
+                self.entry.set(str(cur.execute(f'''SELECT {db_value} FROM Postdata WHERE ID=1''').fetchone()[0]))
+                self.entry.configure()
             else:
                 self.entry = CTkEntry(self.scrollable_frame, placeholder_text=f"Enter {field.lower()}")
                 self.entry.insert(0, str(cur.execute(f'''SELECT {db_value} FROM Postdata WHERE ID=1''').fetchone()[0]))  # Insert the value from the database
@@ -142,8 +171,13 @@ class SettingsPage(CTkFrame):
         cur = con.cursor()
         cur.execute('''
             UPDATE Postdata SET
-                writing_api = ?,
-                writing_model = ?,
+                chatgpt_api = ?,
+                chatgpt_model = ?,
+                deepseek_api = ?,
+                deepseek_model = ?,
+                gemni_api = ?,
+                gemni_model = ?,
+                api_select = ?,
                 title_prompt = ?,
                 intro_prompt = ?,
                 product_prompt = ?,
@@ -153,8 +187,13 @@ class SettingsPage(CTkFrame):
                 conclusion_prompt = ?
             WHERE ID = 1
         ''', (
-            values["writing_api_entry"],
-            values["writing_model_entry"],
+            values["chatgpt_api_entry"],
+            values["chatgpt_model_entry"],
+            values["deepseek_api_entry"],
+            values["deepseek_model_entry"],
+            values["gemni_api_entry"],
+            values["gemni_model_entry"],
+            values["api_select_entry"],
             values["title_prompt_entry"],
             values["intro_prompt_entry"],
             values["product_prompt_entry"],
@@ -177,8 +216,13 @@ class SettingsPage(CTkFrame):
             # Update the database with default values
             cur.execute('''
                 UPDATE Postdata SET
-                    writing_api = ?,
-                    writing_model = ?,
+                    chatgpt_api = ?,
+                    chatgpt_model = ?,
+                    deepseek_api = ?,
+                    deepseek_model = ?,
+                    gemni_api = ?,
+                    gemni_model = ?,
+                    api_select = ?,
                     title_prompt = ?,
                     intro_prompt = ?,
                     product_prompt = ?,
@@ -188,8 +232,13 @@ class SettingsPage(CTkFrame):
                     conclusion_prompt = ?
                 WHERE ID = 1
             ''', (
-                self.default_writing_api,
-                self.default_writing_model,
+                self.default_chatgpt_api,
+                self.default_chatgpt_model,
+                self.default_deepseek_api,
+                self.default_deepseek_model,
+                self.default_gemni_api,
+                self.default_gemni_model,
+                self.default_api_select,
                 self.default_title_prompt,
                 self.default_intro_prompt,
                 self.default_product_prompt,
@@ -203,11 +252,26 @@ class SettingsPage(CTkFrame):
             con.commit()
 
             # Reset the UI entries to default values
-            self.entries['writing_api_entry'].delete(0, END)
-            self.entries['writing_api_entry'].insert(0, self.default_writing_api)
+            self.entries['chatgpt_api_entry'].delete(0, END)
+            self.entries['chatgpt_api_entry'].insert(0, self.default_chatgpt_api)
 
-            self.entries['writing_model_entry'].delete(0, END)
-            self.entries['writing_model_entry'].insert(0, self.default_writing_model)
+            self.entries['chatgpt_model_entry'].delete(0, END)
+            self.entries['chatgpt_model_entry'].insert(0, self.default_chatgpt_model)
+
+            self.entries['deepseek_api_entry'].delete(0, END)
+            self.entries['deepseek_api_entry'].insert(0, self.default_chatgpt_api)
+
+            self.entries['deepseek_model_entry'].delete(0, END)
+            self.entries['deepseek_model_entry'].insert(0, self.default_deepseek_model)
+
+            self.entries['gemni_api_entry'].delete(0, END)
+            self.entries['gemni_api_entry'].insert(0, self.default_chatgpt_api)
+
+            self.entries['gemni_model_entry'].delete(0, END)
+            self.entries['gemni_model_entry'].insert(0, self.default_gemni_model)
+
+            self.entries['api_select_entry'].delete(0, END)
+            self.entries['api_select_entry'].insert(0, self.default_gemni_model)
 
             self.entries['title_prompt_entry'].delete(0, END)
             self.entries['title_prompt_entry'].insert(0, self.default_title_prompt)
