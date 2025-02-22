@@ -104,6 +104,9 @@ directory=/www/wwwroot/AI_Writing_SaaS/
 user=root
 autostart=true
 autorestart=true
+redirect_stderr=true
+stdout_logfile=/var/log/celery_worker1.log
+stderr_logfile=/var/log/celery_worker1_error.log
 stopasgroup=true
 killasgroup=true
 
@@ -113,6 +116,9 @@ directory=/www/wwwroot/AI_Writing_SaaS/
 user=root
 autostart=true
 autorestart=true
+redirect_stderr=true
+stdout_logfile=/var/log/celery_worker2.log
+stderr_logfile=/var/log/celery_worker2_error.log
 stopasgroup=true
 killasgroup=true
 ```
@@ -124,6 +130,9 @@ directory=/www/wwwroot/AI_Writing_SaaS/
 user=root
 autostart=true
 autorestart=true
+redirect_stderr=true
+stdout_logfile=/var/log/celery_worker3.log
+stderr_logfile=/var/log/celery_worker3_error.log
 stopasgroup=true
 killasgroup=true
 ```
