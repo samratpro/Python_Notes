@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>699</width>
+    <width>796</width>
     <height>2088</height>
    </rect>
   </property>
@@ -42,6 +42,11 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
    </property>
    <item>
     <widget class="QWidget" name="widget" native="true">
+     <property name="font">
+      <font>
+       <family>Noto Sans Bengali</family>
+      </font>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QFrame" name="frame">
@@ -50,6 +55,11 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
           <width>16777215</width>
           <height>20</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Noto Sans Bengali</family>
+         </font>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -72,6 +82,11 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
          </property>
          <item>
           <spacer name="horizontalSpacer">
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -87,12 +102,13 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
           <widget class="QLabel" name="label">
            <property name="maximumSize">
             <size>
-             <width>160</width>
+             <width>220</width>
              <height>50</height>
             </size>
            </property>
            <property name="font">
             <font>
+             <family>Noto Sans Bengali</family>
              <pointsize>11</pointsize>
             </font>
            </property>
@@ -103,6 +119,11 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
          </item>
          <item>
           <spacer name="horizontalSpacer_2">
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -119,6 +140,11 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
       </item>
       <item>
        <widget class="QWidget" name="widget_2" native="true">
+        <property name="font">
+         <font>
+          <family>Noto Sans Bengali</family>
+         </font>
+        </property>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <property name="spacing">
           <number>0</number>
@@ -137,6 +163,11 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
          </property>
          <item>
           <widget class="QWidget" name="leftheader" native="true">
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -158,6 +189,11 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
             </property>
             <item>
              <widget class="QFrame" name="frame_6">
+              <property name="font">
+               <font>
+                <family>Noto Sans Bengali</family>
+               </font>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -182,6 +218,11 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
                </property>
                <item>
                 <spacer name="horizontalSpacer_4">
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans Bengali</family>
+                  </font>
+                 </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -195,16 +236,22 @@ QLineEdit{border:1px solid #C3D1DF;border-radius:8px;pdding:5px 15px}
                </item>
                <item>
                 <widget class="QLabel" name="memoLabel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
                  <property name="maximumSize">
                   <size>
-                   <width>250</width>
-                   <height>20</height>
+                   <width>350</width>
+                   <height>23</height>
                   </size>
                  </property>
                  <property name="font">
                   <font>
-                   <family>SutonnyMJ</family>
-                   <pointsize>14</pointsize>
+                   <family>Noto Sans Bengali</family>
+                   <pointsize>13</pointsize>
                   </font>
                  </property>
                  <property name="styleSheet">
@@ -222,6 +269,11 @@ border-radius:5px;padding:3px 8px;</string>
                </item>
                <item>
                 <spacer name="horizontalSpacer_3">
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans Bengali</family>
+                  </font>
+                 </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -240,7 +292,7 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_9">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
+                <family>Noto Sans Bengali</family>
                 <pointsize>22</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
@@ -258,7 +310,7 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_10">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
+                <family>Noto Sans Bengali</family>
                 <pointsize>11</pointsize>
                </font>
               </property>
@@ -272,6 +324,11 @@ border-radius:5px;padding:3px 8px;</string>
             </item>
             <item>
              <widget class="QWidget" name="widget_8" native="true">
+              <property name="font">
+               <font>
+                <family>Noto Sans Bengali</family>
+               </font>
+              </property>
               <layout class="QHBoxLayout" name="horizontalLayout_4">
                <property name="spacing">
                 <number>0</number>
@@ -290,6 +347,11 @@ border-radius:5px;padding:3px 8px;</string>
                </property>
                <item>
                 <widget class="QFrame" name="frame_2">
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans Bengali</family>
+                  </font>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -313,8 +375,8 @@ border-radius:5px;padding:3px 8px;</string>
                     </property>
                     <property name="font">
                      <font>
-                      <family>SutonnyMJ</family>
-                      <pointsize>14</pointsize>
+                      <family>Noto Sans Bengali</family>
+                      <pointsize>13</pointsize>
                      </font>
                     </property>
                     <property name="text">
@@ -326,8 +388,8 @@ border-radius:5px;padding:3px 8px;</string>
                    <widget class="QLineEdit" name="name">
                     <property name="font">
                      <font>
-                      <family>Arial</family>
-                      <pointsize>14</pointsize>
+                      <family>Noto Sans Bengali</family>
+                      <pointsize>13</pointsize>
                      </font>
                     </property>
                    </widget>
@@ -337,6 +399,11 @@ border-radius:5px;padding:3px 8px;</string>
                </item>
                <item>
                 <widget class="QFrame" name="frame_3">
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans Bengali</family>
+                  </font>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -360,8 +427,8 @@ border-radius:5px;padding:3px 8px;</string>
                     </property>
                     <property name="font">
                      <font>
-                      <family>SutonnyMJ</family>
-                      <pointsize>14</pointsize>
+                      <family>Noto Sans Bengali</family>
+                      <pointsize>13</pointsize>
                      </font>
                     </property>
                     <property name="text">
@@ -373,8 +440,8 @@ border-radius:5px;padding:3px 8px;</string>
                    <widget class="QLineEdit" name="date">
                     <property name="font">
                      <font>
-                      <family>Arial</family>
-                      <pointsize>14</pointsize>
+                      <family>Noto Sans Bengali</family>
+                      <pointsize>13</pointsize>
                      </font>
                     </property>
                    </widget>
@@ -387,6 +454,11 @@ border-radius:5px;padding:3px 8px;</string>
             </item>
             <item>
              <widget class="QWidget" name="widget_9" native="true">
+              <property name="font">
+               <font>
+                <family>Noto Sans Bengali</family>
+               </font>
+              </property>
               <layout class="QHBoxLayout" name="horizontalLayout_5">
                <property name="spacing">
                 <number>0</number>
@@ -405,6 +477,11 @@ border-radius:5px;padding:3px 8px;</string>
                </property>
                <item>
                 <widget class="QFrame" name="frame_4">
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans Bengali</family>
+                  </font>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -428,8 +505,8 @@ border-radius:5px;padding:3px 8px;</string>
                     </property>
                     <property name="font">
                      <font>
-                      <family>SutonnyMJ</family>
-                      <pointsize>14</pointsize>
+                      <family>Noto Sans Bengali</family>
+                      <pointsize>13</pointsize>
                      </font>
                     </property>
                     <property name="text">
@@ -441,8 +518,8 @@ border-radius:5px;padding:3px 8px;</string>
                    <widget class="QLineEdit" name="address">
                     <property name="font">
                      <font>
-                      <family>Arial</family>
-                      <pointsize>14</pointsize>
+                      <family>Noto Sans Bengali</family>
+                      <pointsize>13</pointsize>
                      </font>
                     </property>
                    </widget>
@@ -452,6 +529,11 @@ border-radius:5px;padding:3px 8px;</string>
                </item>
                <item>
                 <widget class="QFrame" name="frame_5">
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans Bengali</family>
+                  </font>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -475,8 +557,8 @@ border-radius:5px;padding:3px 8px;</string>
                     </property>
                     <property name="font">
                      <font>
-                      <family>SutonnyMJ</family>
-                      <pointsize>15</pointsize>
+                      <family>Noto Sans Bengali</family>
+                      <pointsize>13</pointsize>
                      </font>
                     </property>
                     <property name="text">
@@ -488,8 +570,8 @@ border-radius:5px;padding:3px 8px;</string>
                    <widget class="QLineEdit" name="mobile">
                     <property name="font">
                      <font>
-                      <family>Arial</family>
-                      <pointsize>14</pointsize>
+                      <family>Noto Sans Bengali</family>
+                      <pointsize>13</pointsize>
                      </font>
                     </property>
                    </widget>
@@ -523,6 +605,11 @@ border-radius:5px;padding:3px 8px;</string>
              <height>0</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">text-align: center;</string>
            </property>
@@ -546,7 +633,7 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_2">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
+                <family>Noto Sans Bengali</family>
                 <pointsize>11</pointsize>
                </font>
               </property>
@@ -567,7 +654,7 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_3">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
+                <family>Noto Sans Bengali</family>
                 <pointsize>12</pointsize>
                </font>
               </property>
@@ -586,7 +673,7 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_4">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
+                <family>Noto Sans Bengali</family>
                 <pointsize>11</pointsize>
                 <weight>50</weight>
                 <bold>false</bold>
@@ -609,7 +696,7 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_5">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
+                <family>Noto Sans Bengali</family>
                 <pointsize>12</pointsize>
                </font>
               </property>
@@ -625,7 +712,7 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_6">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
+                <family>Noto Sans Bengali</family>
                 <pointsize>11</pointsize>
                </font>
               </property>
@@ -646,7 +733,7 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_7">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
+                <family>Noto Sans Bengali</family>
                 <pointsize>11</pointsize>
                </font>
               </property>
@@ -667,6 +754,17 @@ border-radius:5px;padding:3px 8px;</string>
       </item>
       <item>
        <widget class="QWidget" name="widget_3" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Noto Sans Bengali</family>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true">#tableWidget::header{background:red}</string>
         </property>
@@ -688,10 +786,16 @@ border-radius:5px;padding:3px 8px;</string>
          </property>
          <item>
           <widget class="QTableWidget" name="tableWidget">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="font">
             <font>
-             <family>Arial</family>
-             <pointsize>12</pointsize>
+             <family>Noto Sans Bengali</family>
+             <pointsize>11</pointsize>
             </font>
            </property>
            <property name="styleSheet">
@@ -703,14 +807,23 @@ border-radius:5px;padding:3px 8px;</string>
 }
 </string>
            </property>
+           <attribute name="horizontalHeaderMinimumSectionSize">
+            <number>50</number>
+           </attribute>
+           <attribute name="verticalHeaderDefaultSectionSize">
+            <number>30</number>
+           </attribute>
+           <attribute name="verticalHeaderMinimumSectionSize">
+            <number>29</number>
+           </attribute>
            <column>
             <property name="text">
              <string>নাম</string>
             </property>
             <property name="font">
              <font>
-              <family>SutonnyMJ</family>
-              <pointsize>13</pointsize>
+              <family>Noto Sans Bengali</family>
+              <pointsize>11</pointsize>
              </font>
             </property>
             <property name="foreground">
@@ -729,8 +842,8 @@ border-radius:5px;padding:3px 8px;</string>
             </property>
             <property name="font">
              <font>
-              <family>SutonnyMJ</family>
-              <pointsize>13</pointsize>
+              <family>Noto Sans Bengali</family>
+              <pointsize>11</pointsize>
              </font>
             </property>
            </column>
@@ -740,8 +853,8 @@ border-radius:5px;padding:3px 8px;</string>
             </property>
             <property name="font">
              <font>
-              <family>SutonnyMJ</family>
-              <pointsize>13</pointsize>
+              <family>Noto Sans Bengali</family>
+              <pointsize>11</pointsize>
              </font>
             </property>
            </column>
@@ -751,8 +864,8 @@ border-radius:5px;padding:3px 8px;</string>
             </property>
             <property name="font">
              <font>
-              <family>SutonnyMJ</family>
-              <pointsize>13</pointsize>
+              <family>Noto Sans Bengali</family>
+              <pointsize>11</pointsize>
              </font>
             </property>
            </column>
@@ -762,8 +875,8 @@ border-radius:5px;padding:3px 8px;</string>
             </property>
             <property name="font">
              <font>
-              <family>SutonnyMJ</family>
-              <pointsize>13</pointsize>
+              <family>Noto Sans Bengali</family>
+              <pointsize>11</pointsize>
              </font>
             </property>
            </column>
@@ -773,8 +886,8 @@ border-radius:5px;padding:3px 8px;</string>
             </property>
             <property name="font">
              <font>
-              <family>SutonnyMJ</family>
-              <pointsize>13</pointsize>
+              <family>Noto Sans Bengali</family>
+              <pointsize>11</pointsize>
              </font>
             </property>
            </column>
@@ -785,6 +898,11 @@ border-radius:5px;padding:3px 8px;</string>
       </item>
       <item>
        <widget class="QWidget" name="finaTakaWidget" native="true">
+        <property name="font">
+         <font>
+          <family>Noto Sans Bengali</family>
+         </font>
+        </property>
         <layout class="QHBoxLayout" name="horizontalLayout_13">
          <property name="spacing">
           <number>0</number>
@@ -800,6 +918,11 @@ border-radius:5px;padding:3px 8px;</string>
          </property>
          <item>
           <widget class="QFrame" name="frame_9">
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -826,8 +949,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_19">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -842,8 +965,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLineEdit" name="commission">
               <property name="font">
                <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
              </widget>
@@ -853,6 +976,11 @@ border-radius:5px;padding:3px 8px;</string>
          </item>
          <item>
           <widget class="QFrame" name="frame_10">
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -879,8 +1007,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_20">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -895,8 +1023,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLineEdit" name="mosque">
               <property name="font">
                <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
              </widget>
@@ -906,6 +1034,11 @@ border-radius:5px;padding:3px 8px;</string>
          </item>
          <item>
           <widget class="QFrame" name="frame_11">
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -932,8 +1065,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_21">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -948,8 +1081,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLineEdit" name="somiti">
               <property name="font">
                <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
              </widget>
@@ -959,6 +1092,11 @@ border-radius:5px;padding:3px 8px;</string>
          </item>
          <item>
           <widget class="QFrame" name="frame_12">
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -985,8 +1123,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_22">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1001,8 +1139,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLineEdit" name="others">
               <property name="font">
                <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
              </widget>
@@ -1017,6 +1155,11 @@ border-radius:5px;padding:3px 8px;</string>
              <width>120</width>
              <height>0</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -1044,8 +1187,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_23">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1060,8 +1203,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLineEdit" name="totalCost_raw">
               <property name="font">
                <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
              </widget>
@@ -1071,6 +1214,11 @@ border-radius:5px;padding:3px 8px;</string>
          </item>
          <item>
           <widget class="QFrame" name="frame_14">
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -1097,8 +1245,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_24">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1113,8 +1261,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_25">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1129,8 +1277,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_26">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1158,6 +1306,11 @@ border-radius:5px;padding:3px 8px;</string>
              <height>16777215</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -1184,8 +1337,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLineEdit" name="totalTaka">
               <property name="font">
                <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1197,8 +1350,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLineEdit" name="totalCost">
               <property name="font">
                <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
              </widget>
@@ -1207,8 +1360,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLineEdit" name="finalTaka">
               <property name="font">
                <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
              </widget>
@@ -1221,6 +1374,11 @@ border-radius:5px;padding:3px 8px;</string>
       </item>
       <item>
        <widget class="QFrame" name="recevied_frame">
+        <property name="font">
+         <font>
+          <family>Noto Sans Bengali</family>
+         </font>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -1232,6 +1390,7 @@ border-radius:5px;padding:3px 8px;</string>
           <widget class="QLabel" name="label_8">
            <property name="font">
             <font>
+             <family>Noto Sans Bengali</family>
              <pointsize>13</pointsize>
             </font>
            </property>
@@ -1244,6 +1403,7 @@ border-radius:5px;padding:3px 8px;</string>
           <widget class="QLineEdit" name="receivedAmount">
            <property name="font">
             <font>
+             <family>Noto Sans Bengali</family>
              <pointsize>13</pointsize>
             </font>
            </property>
@@ -1253,6 +1413,7 @@ border-radius:5px;padding:3px 8px;</string>
           <widget class="QLabel" name="label_28">
            <property name="font">
             <font>
+             <family>Noto Sans Bengali</family>
              <pointsize>13</pointsize>
             </font>
            </property>
@@ -1265,6 +1426,7 @@ border-radius:5px;padding:3px 8px;</string>
           <widget class="QLineEdit" name="paidAmount">
            <property name="font">
             <font>
+             <family>Noto Sans Bengali</family>
              <pointsize>13</pointsize>
             </font>
            </property>
@@ -1275,6 +1437,11 @@ border-radius:5px;padding:3px 8px;</string>
       </item>
       <item>
        <widget class="QWidget" name="widget_5" native="true">
+        <property name="font">
+         <font>
+          <family>Noto Sans Bengali</family>
+         </font>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <property name="spacing">
           <number>0</number>
@@ -1293,6 +1460,11 @@ border-radius:5px;padding:3px 8px;</string>
          </property>
          <item alignment="Qt::AlignBottom">
           <widget class="QFrame" name="frame_7">
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">QLineEdit{pdding:5px 15px}</string>
            </property>
@@ -1313,8 +1485,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_16">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1326,8 +1498,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLineEdit" name="taka_text">
               <property name="font">
                <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
              </widget>
@@ -1342,6 +1514,11 @@ border-radius:5px;padding:3px 8px;</string>
              <width>0</width>
              <height>60</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Noto Sans Bengali</family>
+            </font>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -1369,8 +1546,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_15">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="styleSheet">
@@ -1385,8 +1562,8 @@ border-radius:5px;padding:3px 8px;</string>
              <widget class="QLabel" name="label_17">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>12</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>11</pointsize>
                </font>
               </property>
               <property name="styleSheet">
@@ -1404,8 +1581,8 @@ margin-top:20px;</string>
              <widget class="QLabel" name="label_18">
               <property name="font">
                <font>
-                <family>SutonnyMJ</family>
-                <pointsize>14</pointsize>
+                <family>Noto Sans Bengali</family>
+                <pointsize>13</pointsize>
                </font>
               </property>
               <property name="text">
