@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy import create_engine
 from ui.costExpenseEntryPage_ui import Ui_costExpenseMain
 from models import *
-from forms.cost_entry_form import CostEntry_Form
+from forms.cost_entry import CostEntry_Form
 from datetime import datetime
 from PyQt6.QtCore import QDate
 from features.printmemo import Print_Form
@@ -69,7 +69,7 @@ class costExpensePage(QWidget):
         custom_font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
         custom_font = QFont(custom_font_family, 13)  # Font size 14
         self.ui.tableWidget.horizontalHeader().setFont(custom_font)
-        self.ui.tableWidget.horizontalHeader().setFont(custom_font)
+        self.ui.tableWidget.setFont(custom_font)
         self.ui.tableWidget.verticalHeader().setFont(custom_font)
         self.ui.endDateLabel.setFont(custom_font)
         self.ui.filterLabel.setFont(custom_font)
@@ -108,7 +108,7 @@ class costExpensePage(QWidget):
             custom_font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
             custom_font = QFont(custom_font_family, 12)  # Font size 12
 
-        from features.bangla_typing import enable_bangla_typing
+        from bangla_typing import enable_bangla_typing
         self.ui.filterNameInput.setFont(custom_font)
         enable_bangla_typing(self.ui.filterNameInput, setting.font)
 
@@ -487,8 +487,7 @@ class costExpensePage(QWidget):
                     loan_payer_name=payerName,
                     date=entry_date,
                     amount=amount,
-                    entry_by=entry_by,
-                    description=description
+                    entry_by=entry_by
                 )
                 session.add(loan_entry)
                 session.commit()
@@ -499,14 +498,7 @@ class costExpensePage(QWidget):
                 if not loan_receiver:
                     self.show_error_message("ঋণ গ্রহণকারী কে পাওয়া যায়নি")
                     return
-                dealer_entry = DealerModel(
-                    entry_name=entry_name,
-                    name=receiverName,
-                    date=entry_date,
-                    paying_amount=amount,
-                    entry_by=entry_by,
-                    description=description
-                )
+                dealer_entry = DealerModel(entry_name=entry_name,name=receiverName,date=entry_date,paying_amount=amount,entry_by=entry_by,description=description)
                 session.add(dealer_entry)
                 accounting = session.query(FinalAccounting).first()
                 accounting.capital -= amount
