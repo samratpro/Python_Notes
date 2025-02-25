@@ -23,7 +23,7 @@
 27. xlsxwriter
 28. Font, dynamic font add in table data
 29. Backup
-30. Print memo, update memo data also skipp rows (width : 695, height : 2000)
+30. Print memo, update memo data, Update Heade Size, also skipp rows,  (width : 795, height : 2000)
 31. custom font with file, combofont,
 32. auto increment
 33. make capital in add buyer form
