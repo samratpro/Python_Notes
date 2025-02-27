@@ -28,6 +28,7 @@
 32. auto increment
 33. make capital in add buyer form
 34. bangla font from models.py
+35. Float Object with move method
 
 
 
