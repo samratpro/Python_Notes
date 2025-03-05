@@ -147,6 +147,9 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 ```
 ### Modify Some codes after setup Wizard
 ```
+Generate & Copy File from CMD open
+```
+```
 [Setup]
 DefaultDirName={userappdata}\{#MyAppName}   # Chanage install Dir " Program File (x86) " to "Appdata" folder
 DisableDirPage=no                           # For this also user can change dir while installing software
