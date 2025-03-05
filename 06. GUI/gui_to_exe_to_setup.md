@@ -100,6 +100,9 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={userappdata}\{#MyAppName}
+DefaultGroupName={#MyAppName}
+UninstallDisplayName={#MyAppName}
+UninstallDisplayIcon={app}\{#MyAppExeName}
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
 DisableDirPage=no
@@ -110,7 +113,7 @@ SetupIconFile=C:\Users\pc\Desktop\fish_dealer_software\output\logo.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-UninstallFilesDir=Uninstall\exe\{#MyAppName}
+UninstallFilesDir={app}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -145,6 +148,17 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilen
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
+[UninstallDelete]
+Type: files; Name: "{app}\business.db"
+Type: files; Name: "{app}\logo.ico"
+Type: files; Name: "{app}\logo.bmp"
+Type: files; Name: "{app}\appbanner.bmp"
+Type: files; Name: "{app}\icons\*.svg"
+Type: files; Name: "{app}\images\*.png"
+Type: files; Name: "{app}\font\*.ttf"
+Type: files; Name: "{app}\font\arial.ttf"
+Type: files; Name: "{app}\font\nato.ttf"
 ```
 ### Modify Some codes after setup Wizard
 ```
@@ -164,6 +178,9 @@ Defined that this file must be modified by user or software
 
 [Dirs]
 Name: "{commonappdata}\{#MyAppName}"; Permissions: users-full
+
+[UninstallDelete]
+Type: files; Name: "{app}\business.db"
 ```
 ## Modify
 ```
