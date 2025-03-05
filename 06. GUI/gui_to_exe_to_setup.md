@@ -82,54 +82,57 @@ UninstallFilesDir=Uninstall\exe\{#MyAppNam}
 ```
 ## Example
 ```ini
-; Define application details
-#define MyAppName "Fish Dealer Software" ; Change to your application name
-#define MyAppVersion "1.5" ; Change to your application version
-#define MyAppPublisher "Osman Fish" ; Change to your publisher name
-#define MyAppURL "https://www.example.com/" ; Change to your application URL
-#define MyAppExeName "App.exe" ; Change to your main executable file name
-#define MyAppAssocName MyAppName + " File" ; Change if you want a different file association name
-#define MyAppAssocExt ".myp" ; Change to your desired file extension
-#define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt ; No need to change
+#define MyAppName "Fish Dealer Software"
+#define MyAppVersion "1.5"
+#define MyAppPublisher "Osman Fish"
+#define MyAppURL "https://www.example.com/"
+#define MyAppExeName "App.exe"
+#define MyAppAssocName MyAppName + " File"
+#define MyAppAssocExt ".myp"
+#define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
 [Setup]
-AppId={{77B47AEF-8BD1-4F85-9E7F-DEE89A05DFC1} ; Generate a new GUID for your application
-DefaultDirName={userappdata}\{#MyAppName}   # Chanage install Dir " Program File (x86) " to "Appdata" folder
-AppName={#MyAppName} ; No need to change
-AppVersion={#MyAppVersion} ; No need to change
-AppPublisher={#MyAppPublisher} ; No need to change
-AppPublisherURL={#MyAppURL} ; No need to change
-AppSupportURL={#MyAppURL} ; No need to change
-AppUpdatesURL={#MyAppURL} ; No need to change
-DefaultDirName={userappdata}\{#MyAppName} ; Change if you want a different installation directory
-ChangesAssociations=yes ; Set to "no" if you don't want file associations
-DisableProgramGroupPage=yes ; Set to "no" if you want a program group in the Start menu
-DisableDirPage=no ; Set to "yes" if you want to hide the directory selection page
-OutputBaseFilename=mysetup ; Change to your desired setup file name
-SetupIconFile=C:\Users\pc\Desktop\fish_dealer_software\logo.ico ; Change to the path of your icon file
-WizardSmallImageFile=C:\Users\pc\Desktop\fish_dealer_software\logo.bmp ; Change to the path of your wizard image
-Compression=lzma ; No need to change
-SolidCompression=yes ; No need to change
-WizardStyle=modern ; No need to change
-UninstallFilesDir=Uninstall\exe\{#MyAppName} ; No need to change
+AppId={{77B47AEF-8BD1-4F85-9E7F-DEE89A05DFC1}
+AppName={#MyAppName}
+AppVersion={#MyAppVersion}
+AppPublisher={#MyAppPublisher}
+AppPublisherURL={#MyAppURL}
+AppSupportURL={#MyAppURL}
+AppUpdatesURL={#MyAppURL}
+DefaultDirName={userappdata}\{#MyAppName}
+ChangesAssociations=yes
+DisableProgramGroupPage=yes
+DisableDirPage=no
+OutputBaseFilename=mysetup
+WizardImageFile=C:\Users\pc\Desktop\fish_dealer_software\output\appbanner.bmp
+WizardSmallImageFile=C:\Users\pc\Desktop\fish_dealer_software\output\logo.bmp
+SetupIconFile=C:\Users\pc\Desktop\fish_dealer_software\output\logo.ico
+Compression=lzma
+SolidCompression=yes
+WizardStyle=modern
+UninstallFilesDir=Uninstall\exe\{#MyAppName}
 
 [Languages]
-Name: "english"; MessagesFile: "compiler:Default.isl" ; Add more languages if needed
+Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked ; Change if you want to add more tasks
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-; Add your application files here
-Source: "C:\Users\pc\Desktop\fish_dealer_software\output\business.db"; DestDir: "{commonappdata}\{#MyAppName}"; Flags: ignoreversion; Permissions: users-modify ; Change the source path
-Source: "C:\Users\pc\Desktop\fish_dealer_software\output\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion ; Change the source path
-Source: "C:\Users\pc\Desktop\fish_dealer_software\logo.ico"; DestDir: "{app}"; Flags: ignoreversion ; Change the source path
-Source: "C:\Users\pc\Desktop\fish_dealer_software\logo.bmp"; DestDir: "{app}"; Flags: ignoreversion ; Change the source path
-Source: "C:\Users\pc\Desktop\fish_dealer_software\output\icons\*.svg"; DestDir: "{app}\icons"; Flags: ignoreversion ; Change the source path
-Source: "C:\Users\pc\Desktop\fish_dealer_software\output\images\*.png"; DestDir: "{app}\images"; Flags: ignoreversion ; Change the source path
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\logo.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\logo.bmp"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\appbanner.bmp"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\icons\*.svg"; DestDir: "{app}\icons"; Flags: ignoreversion
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\images\*.png"; DestDir: "{app}\images"; Flags: ignoreversion
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\font\*.ttf"; DestDir: "{app}\font"; Flags: ignoreversion
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\font\arial.ttf"; DestDir: "{app}\font"; Flags: ignoreversion
+Source: "C:\Users\pc\Desktop\fish_dealer_software\output\font\nato.ttf"; DestDir: "{app}\font"; Flags: ignoreversion
+
+[Dirs]
+Name: "{commonappdata}\{#MyAppName}"; Permissions: users-full
 
 [Registry]
-; Modify file associations if needed
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
@@ -137,12 +140,10 @@ Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; Value
 Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".myp"; ValueData: ""
 
 [Icons]
-; Add shortcuts here
-Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\logo.ico" ; Change the icon path if needed
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\logo.ico"; Tasks: desktopicon ; Change the icon path if needed
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\logo.ico"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\logo.ico"; Tasks: desktopicon
 
 [Run]
-; Add post-install actions here
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 ```
 ### Modify Some codes after setup Wizard
@@ -157,10 +158,12 @@ DisableDirPage=no                           # For this also user can change dir 
 " Program File (x86) " can't modify the database
 
 [Files]
-Source: "C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\postdb.db"; DestDir: "{commonappdata}\{#MyAppName}"; Flags: ignoreversion; Permissions: users-modify
+❌ Source: "C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\postdb.db"; DestDir: "{commonappdata}\{#MyAppName}"; Flags: ignoreversion; Permissions: users-modify
 
 Defined that this file must be modified by user or software
 
+[Dirs]
+Name: "{commonappdata}\{#MyAppName}"; Permissions: users-full
 ```
 ## Modify
 ```
