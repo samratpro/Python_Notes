@@ -169,13 +169,10 @@ Defined that this file must be modified by user or software
 WizardImageFile=C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\banner.bmp
 WizardSmallImageFile=C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\wizard_small_icon.bmp
 SetupIconFile=C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\logo.ico
-
+UninstallFilesDir=Uninstall\exe\{#NAME_OF_APP}
 
 # Banner WizardImageFile = 202 X 386
 # WizardSmallImageFile = 56 X 58
-
-UninstallFilesDir=Uninstall\exe\{#NAME_OF_APP}
-
 
 ```
 ### Run 
