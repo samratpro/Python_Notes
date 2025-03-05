@@ -94,6 +94,7 @@ UninstallFilesDir=Uninstall\exe\{#MyAppNam}
 
 [Setup]
 AppId={{77B47AEF-8BD1-4F85-9E7F-DEE89A05DFC1} ; Generate a new GUID for your application
+DefaultDirName={userappdata}\{#MyAppName}   # Chanage install Dir " Program File (x86) " to "Appdata" folder
 AppName={#MyAppName} ; No need to change
 AppVersion={#MyAppVersion} ; No need to change
 AppPublisher={#MyAppPublisher} ; No need to change
@@ -143,6 +144,36 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilen
 [Run]
 ; Add post-install actions here
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+```
+### Modify Some codes after setup Wizard
+```
+[Setup]
+DefaultDirName={userappdata}\{#MyAppName}   # Chanage install Dir " Program File (x86) " to "Appdata" folder
+DisableDirPage=no                           # For this also user can change dir while installing software
+
+" Program File (x86) " can't modify the database
+
+[Files]
+Source: "C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\postdb.db"; DestDir: "{commonappdata}\{#MyAppName}"; Flags: ignoreversion; Permissions: users-modify
+
+Defined that this file must be modified by user or software
+
+```
+## Modify
+```
+[Setup]
+; Custom Wizard Image, must be .bmp and ico format
+WizardImageFile=C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\banner.bmp
+WizardSmallImageFile=C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\wizard_small_icon.bmp
+SetupIconFile=C:\Users\pc\Desktop\tkinter_practice\AIWritting App\output\logo.ico
+
+
+# Banner WizardImageFile = 202 X 386
+# WizardSmallImageFile = 56 X 58
+
+UninstallFilesDir=Uninstall\exe\{#NAME_OF_APP}
+
+
 ```
 ### Run 
 ```
