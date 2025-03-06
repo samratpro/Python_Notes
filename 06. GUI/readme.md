@@ -252,7 +252,8 @@ from sqlalchemy import and_, or_
 | Method                          | Description                                         | Example                                                                 |
 |---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
 | `.order_by()`                   | Sort query results.                                 | `session.query(User).order_by(User.age.desc()).all()`                  |
-| `.limit()`                      | Limit the number of rows returned.                 | `session.query(User).limit(10).all()`                                  |
+| `.order_by()`                   | Sort query results.                                 | `query.order_by(desc(Model.date)).all()`                  |
+| `.limit()`                      | Limit the number of rows returned.                  | `session.query(User).limit(10).all()`                                  |
 | `.offset()`                     | Skip a number of rows before returning results.     | `session.query(User).offset(5).limit(10).all()`                        |
 
 ---
