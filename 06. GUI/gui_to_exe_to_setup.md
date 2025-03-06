@@ -2,11 +2,11 @@
 ## 01. Pyinstaller Bootloader for C++ compiler
 ```
 https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184
-
+```
 - Windows: [https://visualstudio.microsoft.com/downloads/](Install Visual Studio Build Tools)
            (Ensure you select MSVC, CMake, and Windows SDK during installation).
 - Linux/macOS: Install gcc, clang, make, and zlib development headers.
-
+```
 1. Uninstall Existing pyinstaller
 2. Install Microsoft Visual C++ Compiler
 3. Run Compiler
