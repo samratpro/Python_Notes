@@ -3,7 +3,7 @@
 ```
 https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184
 
-- Windows: [!https://visualstudio.microsoft.com/downloads/](Install Visual Studio Build Tools)
+- Windows: [https://visualstudio.microsoft.com/downloads/](Install Visual Studio Build Tools)
            (Ensure you select MSVC, CMake, and Windows SDK during installation).
 - Linux/macOS: Install gcc, clang, make, and zlib development headers.
 
