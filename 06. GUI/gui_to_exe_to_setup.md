@@ -3,21 +3,17 @@
 ```
 https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184
 ```
-- Windows: [!https://visualstudio.microsoft.com/downloads/](Install Visual Studio Build Tools)
-           (Ensure you select MSVC, CMake, and Windows SDK during installation).
+- Windows: (!https://visualstudio.microsoft.com/downloads/) Visual Studio Build Tools
+           (Ensure you select MSVC, CMake, and Windows SDK during installation C, C++).
 - Linux/macOS: Install gcc, clang, make, and zlib development headers.
 ```
-1. Uninstall Existing pyinstaller
-2. Install Microsoft Visual C++ Compiler
-3. Run Compiler
-4. Download Update git repo: http://github.com/pyinstaller/pyinstaller/releases
-5. F:\DriverName\pyinstaller-5.13.0\pyinstaller-5.13.0\bootloader
-   from here run, " python.exe ./waf all "
-   check the " waf " file in this folder before run the above command
-6. F:\DriverName\pyinstaller-5.13.0\pyinstaller-5.13.0
-   come back and from this folder run " pip install . " or  " python setup.py install "
-7. Bootloader has been completed
-   
+git clone --recursive https://github.com/pyinstaller/pyinstaller.git
+cd pyinstaller/bootloader
+python ./waf all  # windows
+python3 ./waf all  # Linux/macOS
+
+# go back to the PyInstaller directory
+pip install .
 ```
 
 ## 02. Generate Portable exe file
