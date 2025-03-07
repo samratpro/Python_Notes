@@ -62,9 +62,18 @@ else:
 ```
 
 ```
-python -m compileall -b venv/Lib/site-packages/
-mkdir external_libs
-cp -r venv/Lib/site-packages/__pycache__/* external_libs/
+python -m compileall -b C:\Users\pc\Desktop\fish_dealer_software\venv\Lib\site-packages\
+mkdir C:\Users\pc\Desktop\fish_dealer_software\external_libs
+xcopy /E /I C:\Users\pc\Desktop\fish_dealer_software\venv\Lib\site-packages\__pycache__\* C:\Users\pc\Desktop\fish_dealer_software\external_libs\
+```
+run.bat
+```
+@echo off
+setlocal
+set PYTHONPATH=%~dp0external_libs
+%~dp0venv\Scripts\pythonw.exe %~dp0app\main.py
+pause
+endlocal
 ```
 
 Example innosetup iss file
