@@ -7,6 +7,7 @@ https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolve
            (Ensure you select MSVC, CMake, and Windows SDK during installation C, C++).
 - Linux/macOS: Install gcc, clang, make, and zlib development headers.
 ```
+# in any directory
 git clone --recursive https://github.com/pyinstaller/pyinstaller.git
 cd pyinstaller/bootloader
 python ./waf all  # windows
@@ -14,6 +15,14 @@ python3 ./waf all  # Linux/macOS
 
 # go back to the PyInstaller directory
 pip install .
+```
+```
+active local env
+pip install --no-deps pyinstaller
+pip install --no-deps auto-py-to-exe
+pip install --no-deps --force-reinstall pyinstaller
+pyinstaller --help | findstr "bootloader"
+python -c "import PyInstaller; print(PyInstaller.__file__)"  
 ```
 
 ## 02. Generate Portable exe file
