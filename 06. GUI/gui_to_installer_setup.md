@@ -82,11 +82,11 @@ run.bat
 ```
 ; Define installer name and output directory
 [Setup]
-AppName=Fish Dealer Software 2
+AppName=Fish Dealer Software
 AppVersion=1.0
-DefaultDirName={localappdata}\FishDealerSoftware2
-DefaultGroupName=Fish Dealer Software 2
-OutputBaseFilename=FishDealerSetup2
+DefaultDirName={localappdata}\FishDealerSoftware
+DefaultGroupName=Fish Dealer Software
+OutputBaseFilename=FishDealerSetup
 Compression=lzma
 SolidCompression=yes
 SetupIconFile=C:\Users\pc\Desktop\pyhton\fish\static\logo.ico
@@ -110,7 +110,7 @@ Source: "C:\Users\pc\Desktop\pyhton\fish\images\*"; DestDir: "{app}\images"; Fla
 ; Create necessary folders
 [Dirs]
 Name: "{app}"; Permissions: everyone-full
-Name: "{localappdata}\FishDealerSoftware2"; Permissions: everyone-full
+Name: "{localappdata}\FishDealerSoftware"; Permissions: everyone-full
 
 ; Registry settings (optional)
 [Registry]
@@ -118,9 +118,9 @@ Root: HKCU; Subkey: "Software\FishDealerSoftware2"; Flags: uninsdeletekey
 
 ; Shortcuts
 [Icons]
-Name: "{group}\Fish Dealer Software 2"; Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"
-Name: "{group}\Uninstall Fish Dealer Software 2"; Filename: "{uninstallexe}"; IconFilename: "{app}\static\logo.ico"
-Name: "{commondesktop}\Fish Dealer Software 2"; Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"; Tasks: desktopicon
+Name: "{group}\Fish Dealer Software"; Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"
+Name: "{group}\Uninstall Fish Dealer Software"; Filename: "{uninstallexe}"; IconFilename: "{app}\static\logo.ico"
+Name: "{commondesktop}\Fish Dealer Software"; Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"; Tasks: desktopicon
 
 ; Run the application after installation
 [Run]
@@ -129,7 +129,7 @@ Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; Wor
 ; Uninstaller (removes everything)
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}"
-Type: filesandordirs; Name: "{localappdata}\FishDealerSoftware2"
+Type: filesandordirs; Name: "{localappdata}\FishDealerSoftware"
 
 ; Optional tasks
 [Tasks]
