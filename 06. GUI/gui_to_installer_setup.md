@@ -78,7 +78,7 @@ run.bat
 %~dp0venv\Scripts\pythonw.exe %~dp0main.py
 ```
 
-Example innosetup iss file
+# Example innosetup iss file 
 ```
 ; Define installer name and output directory
 [Setup]
@@ -118,13 +118,13 @@ Root: HKCU; Subkey: "Software\FishDealerSoftware2"; Flags: uninsdeletekey
 
 ; Shortcuts
 [Icons]
-Name: "{group}\Fish Dealer Software 2"; Filename: "{app}\run.bat"; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"
+Name: "{group}\Fish Dealer Software 2"; Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"
 Name: "{group}\Uninstall Fish Dealer Software 2"; Filename: "{uninstallexe}"; IconFilename: "{app}\static\logo.ico"
-Name: "{commondesktop}\Fish Dealer Software 2"; Filename: "{app}\run.bat"; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"; Tasks: desktopicon
+Name: "{commondesktop}\Fish Dealer Software 2"; Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"; Tasks: desktopicon
 
 ; Run the application after installation
 [Run]
-Filename: "{app}\run.bat"; WorkingDir: "{app}"; Flags: nowait postinstall
+Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; Flags: nowait postinstall
 
 ; Uninstaller (removes everything)
 [UninstallDelete]
