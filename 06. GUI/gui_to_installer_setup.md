@@ -66,46 +66,72 @@ python -m compileall -b C:\Users\pc\Desktop\fish_dealer_software\venv\Lib\site-p
 mkdir C:\Users\pc\Desktop\fish_dealer_software\external_libs
 xcopy /E /I C:\Users\pc\Desktop\fish_dealer_software\venv\Lib\site-packages\__pycache__\* C:\Users\pc\Desktop\fish_dealer_software\external_libs\
 ```
+
+# Bat method 
 run.bat
 ```
 @echo off
-setlocal
-set PYTHONPATH=%~dp0external_libs
-%~dp0venv\Scripts\pythonw.exe %~dp0app\main.py
-pause
-endlocal
+%~dp0venv\Scripts\python.exe %~dp0main.py
+```
+```
+@echo off
+%~dp0venv\Scripts\pythonw.exe %~dp0main.py
 ```
 
 Example innosetup iss file
 ```
+; Define installer name and output directory
 [Setup]
-AppName=My Secure PyQt6 App
+AppName=Fish Dealer Software 2
 AppVersion=1.0
-DefaultDirName={pf}\MySecureApp
-OutputBaseFilename=MySecureApp_Installer
+DefaultDirName={localappdata}\FishDealerSoftware2
+DefaultGroupName=Fish Dealer Software 2
+OutputBaseFilename=FishDealerSetup2
 Compression=lzma
 SolidCompression=yes
-WizardImageFile=C:\Users\pc\Desktop\fish_dealer_software\app\static\appbanner.bmp
-WizardSmallImageFile=C:\Users\pc\Desktop\fish_dealer_software\app\static\logo.bmp
-SetupIconFile=C:\Users\pc\Desktop\fish_dealer_software\app\static\logo.ico
+SetupIconFile=C:\Users\pc\Desktop\pyhton\fish\static\logo.ico
 
+; Wizard images (if needed)
+WizardImageFile=C:\Users\pc\Desktop\pyhton\fish\static\appbanner.bmp
+WizardSmallImageFile=C:\Users\pc\Desktop\pyhton\fish\static\logo.bmp
+
+; Silent installation option
+DisableDirPage=no
+DisableProgramGroupPage=yes
+
+; Include Python interpreter and app files
 [Files]
-Source: "C:\Users\pc\Desktop\fish_dealer_software\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs
-Source: "C:\Users\pc\Desktop\fish_dealer_software\python\*"; DestDir: "{app}\python"; Flags: recursesubdirs createallsubdirs
-Source: "C:\Users\pc\Desktop\fish_dealer_software\external_libs\*"; DestDir: "{app}\external_libs"; Flags: recursesubdirs createallsubdirs
-Source: "C:\Users\pc\Desktop\fish_dealer_software\app\font\*"; DestDir: "{app}\fonts"; Flags: recursesubdirs createallsubdirs
-Source: "C:\Users\pc\Desktop\fish_dealer_software\app\font\*"; DestDir: "{app}\icons"; Flags: recursesubdirs createallsubdirs
-Source: "C:\Users\pc\Desktop\fish_dealer_software\app\images\*"; DestDir: "{app}\images"; Flags: recursesubdirs createallsubdirs
+Source: "C:\Users\pc\Desktop\pyhton\fish\*"; DestDir: "{app}"; Flags: recursesubdirs
+Source: "C:\Users\pc\Desktop\pyhton\fish\venv\*"; DestDir: "{app}\venv"; Flags: recursesubdirs
+Source: "C:\Users\pc\Desktop\pyhton\fish\font\*"; DestDir: "{app}\font"; Flags: recursesubdirs
+Source: "C:\Users\pc\Desktop\pyhton\fish\icons\*"; DestDir: "{app}\icons"; Flags: recursesubdirs
+Source: "C:\Users\pc\Desktop\pyhton\fish\images\*"; DestDir: "{app}\images"; Flags: recursesubdirs
 
+; Create necessary folders
+[Dirs]
+Name: "{app}"; Permissions: everyone-full
+Name: "{localappdata}\FishDealerSoftware2"; Permissions: everyone-full
+
+; Registry settings (optional)
+[Registry]
+Root: HKCU; Subkey: "Software\FishDealerSoftware2"; Flags: uninsdeletekey
+
+; Shortcuts
 [Icons]
-Name: "{group}\MySecureApp"; Filename: "{app}\run.bat"; WorkingDir: "{app}"
+Name: "{group}\Fish Dealer Software 2"; Filename: "{app}\run.bat"; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"
+Name: "{group}\Uninstall Fish Dealer Software 2"; Filename: "{uninstallexe}"; IconFilename: "{app}\static\logo.ico"
+Name: "{commondesktop}\Fish Dealer Software 2"; Filename: "{app}\run.bat"; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"; Tasks: desktopicon
 
+; Run the application after installation
+[Run]
+Filename: "{app}\run.bat"; WorkingDir: "{app}"; Flags: nowait postinstall
+
+; Uninstaller (removes everything)
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}"
+Type: filesandordirs; Name: "{localappdata}\FishDealerSoftware2"
 
-[Registry]
-Root: HKCU; Subkey: "Software\MySecureApp"; ValueType: string; ValueName: "InstallationDir"; ValueData: "{app}"
-
-[Run]
-Filename: "{app}\python\pythonw.exe"; Parameters: "{app}\decryptor.py"; WorkingDir: "{app}"; Description: "Launch My Secure App"; Flags: nowait postinstall skipifsilent
+; Optional tasks
+[Tasks]
+Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; Flags: unchecked
 ```
