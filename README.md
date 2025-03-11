@@ -83,6 +83,7 @@
 - Classes and Objects:
   - Understanding `class`, `__init__`, and instance methods.
   - Object instantiation and method invocation.
+  - Class Artibute vs self Artibute
 - Inheritance:
   - Subclassing classes and overriding methods.
 - Polymorphism:
