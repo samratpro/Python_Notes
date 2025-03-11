@@ -83,7 +83,33 @@
 - Classes and Objects:
   - Understanding `class`, `__init__`, and instance methods.
   - Object instantiation and method invocation.
-  - Class Artibute vs self Artibute
+  - Class attribute vs instance attribute
+    ```py
+    # class attribute can be update with class level
+    # instance attribute can be update with instance level
+    # class attribute can be instance attribute with self keyword
+    # class
+    class test:
+        api = "xx"
+    
+        def __init__(self, x):
+            self.x = x
+        def check(self):
+            print(self.api, '1')  # instance attribute
+            print(test.api, '2')  # class attribute
+    
+    t = test('x')
+    t.api = "Data"
+    t.check()
+    
+    test.api = "Data 2"
+    print(test.api)
+    
+    # Output:
+    # Data 1
+    # xx 2
+    # Data 2
+    ```
 - Inheritance:
   - Subclassing classes and overriding methods.
 - Polymorphism:
