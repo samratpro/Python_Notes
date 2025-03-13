@@ -1,3 +1,18 @@
+### obfuscate
+```
+https://pyob.oxyry.com/
+https://pyobfuscate.com/pyd
+https://freecodingtools.org/tools/obfuscator/python
+https://github.com/dashingsoft/pyarmor-webui
+https://pyarmor.readthedocs.io/en/stable/tutorial/getting-started.html#obfuscating-one-script
+```
+file attacthed
+```bash
+pip install pyarmor
+python convert_to_utf8.py
+python replace_with_obfuscated.py
+```
+
 ### Embeded Python
 ```
 https://www.python.org/downloads/windows/
@@ -36,6 +51,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 ### Run
 ```
 embeded_python\python app.py
+```
+### run.bat
+```
+@echo off
+%~dp0embeded_python\pythonw.exe %~dp0 app.py
+pause
+endlocal
 ```
 
 
