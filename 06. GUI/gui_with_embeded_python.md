@@ -5,6 +5,7 @@ https://www.python.org/downloads/source/
 https://www.python.org/downloads/macos/
 ```
 ### Prepare pip 
+Keep embeded python in same project directory
 ```cmd
 curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 embeded_python\python get-pip.py
