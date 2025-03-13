@@ -24,6 +24,13 @@ embeded_python\python -m pip install "module name"
 embeded_python\python -m pip freeze > requirements.txt
 embeded_python\python -m pip install -r requirements.txt
 ```
+### Startup file, main.py or app.py
+add this on header
+```py
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+```
 ### Run
 ```
 embeded_python\python app.py
