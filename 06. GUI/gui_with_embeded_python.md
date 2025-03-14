@@ -53,17 +53,17 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 ```
 embeded_python\python app.py
 ```
-### run.bat
+### runner.bat
 ```
 @echo off
 cd /d %~dp0
 python\pythonw.exe app.py
 # python\python.exe app.py
 ```
-### run_app.vbs
+### run.vbs
 ```
 Set WshShell = CreateObject("WScript.Shell")
-WshShell.Run "run.bat", 0, False
+WshShell.Run "runner.bat", 0, False
 ```
 
 
