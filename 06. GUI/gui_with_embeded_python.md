@@ -39,6 +39,7 @@ embeded_python\python -m pip list
 embeded_python\python -m pip freeze
 embeded_python\python -m pip install "module name"
 embeded_python\python -m pip freeze > requirements.txt
+embeded_python\python -m pip uninstall -y -r requirements.txt
 embeded_python\python -m pip install -r requirements.txt
 ```
 ### Startup file, main.py or app.py
@@ -55,10 +56,14 @@ embeded_python\python app.py
 ### run.bat
 ```
 @echo off
-%~dp0embeded_python\pythonw.exe %~dp0 app.py
-pause
-endlocal
+cd /d %~dp0
+python\pythonw.exe app.py
+# python\python.exe app.py
 ```
-
+### run_app.vbs
+```
+Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run "run.bat", 0, False
+```
 
 
