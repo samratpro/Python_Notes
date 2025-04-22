@@ -3,135 +3,57 @@
 https://www.python.org/downloads/windows/
 https://jrsoftware.org/isdl.php#stable
 https://drive.google.com/drive/folders/1NuUfle3LgGdWI6Z-GHdFJ4zJYkoVMQ8E?usp=sharing
-```
-```bash
-pip install cryptography
-```
-
-encrypt.py
-```py
-import os
-from cryptography.fernet import Fernet
-
-# 1️⃣ Generate a new encryption key (Run this only once and save it securely)
-key = Fernet.generate_key()
-cipher = Fernet(key)
-
-print(f"🔑 Save this key securely: {key.decode()}")
-
-# 2️⃣ Encrypt all Python files in the 'app' folder
-source_folder = "app/"
-for root, _, files in os.walk(source_folder):
-    for file in files:
-        if file.endswith(".py"):  # Encrypt only .py files
-            file_path = os.path.join(root, file)
-
-            # Read and encrypt the file content
-            with open(file_path, "rb") as f:
-                encrypted_data = cipher.encrypt(f.read())
-
-            # Save as .enc file
-            with open(file_path.replace(".py", ".enc"), "wb") as f:
-                f.write(encrypted_data)
-
-            os.remove(file_path)  # Delete the original .py file
-
-print("✅ All Python files encrypted!")
-
-```
-decryptor.py
-```py
-from cryptography.fernet import Fernet
-import os
-
-# 1️⃣ Store your encryption key (Replace with your actual key)
-key = b"your-saved-key-here"  # Replace this with the key from encrypt.py
-cipher = Fernet(key)
-
-# 2️⃣ Decrypt & run the main script
-main_enc_path = "app/main.enc"
-
-if os.path.exists(main_enc_path):
-    with open(main_enc_path, "rb") as f:
-        encrypted_code = f.read()
-
-    decrypted_code = cipher.decrypt(encrypted_code)
-    exec(decrypted_code)  # Run the decrypted script in memory
-else:
-    print("❌ Error: Encrypted file not found!")
+https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/
+https://www.briggsoft.com/signgui.htm
 ```
 
+## 01. Generate Portable exe file
+### Install Packages
 ```
-python -m compileall -b C:\Users\pc\Desktop\fish_dealer_software\venv\Lib\site-packages\
-mkdir C:\Users\pc\Desktop\fish_dealer_software\external_libs
-xcopy /E /I C:\Users\pc\Desktop\fish_dealer_software\venv\Lib\site-packages\__pycache__\* C:\Users\pc\Desktop\fish_dealer_software\external_libs\
+pip install pyinstaller
+pip install auto-py-to-exe
+```
+### Input command in CMD or Git Bash
+```
+auto-py-to-exe
+```
+### Configure paths
+```
+1. Select the main script path
+2. Select Onefile
+3. Select Window Base
+4. Select the Icon file (logo.ico)
+5. Select additional files
+6. Select Package Folder for Customtkinter or if required
+to see the path and make this command:
+pip show customtkinter
+example path is:  C:\Users\pc\AppData\Local\Programs\Python\Python311\Lib\site-packages
+```
+### Generate exe
+```
+After completing all click on generate .PY To Exe button, also we can modify the output folder from setting
+```
+## Generate Certificate
+```
+New-SelfSignedCertificate -Type Custom -Subject "CN=Sofmake, O=Sofmake, C=US" -KeyUsage DigitalSignature -FriendlyName "My Friendly Cert Name" -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
+
+Get-ChildItem -Path Cert:\CurrentUser\My  # to see 
+
+$thumb = "F2D86ADFA91BEEBF4EAF870B406DF5D7F373075E"
+$cert = Get-Item "Cert:\CurrentUser\My\$thumb"
+Export-PfxCertificate -Cert $cert -FilePath "C:\Users\pc\Desktop\fish_dealer_software\output\MyCertbing.pfx" -Password (Read-Host -AsSecureString "Enter password")
+```
+## Apply Certificate
+```
+- open signgui
+- C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe (Eample : SingTool location)
+- C:\Users\pc\Desktop\fish_dealer_software\output\MyCertbing.pfx (PFX file, password : given password to generate file)
+- C:\Users\pc\Desktop\fish_dealer_software\output\app.exe (Output)
+- SHA 256 (Signurate)
 ```
 
-# Bat method 
-run.bat
+## 03. Packging
 ```
-@echo off
-%~dp0venv\Scripts\python.exe %~dp0main.py
-```
-```
-@echo off
-%~dp0venv\Scripts\pythonw.exe %~dp0main.py
-```
-
-# Example innosetup iss file 
-```
-; Define installer name and output directory
-[Setup]
-AppName=Fish Dealer Software
-AppVersion=1.0
-DefaultDirName={localappdata}\FishDealerSoftware
-DefaultGroupName=Fish Dealer Software
-OutputBaseFilename=FishDealerSetup
-Compression=lzma
-SolidCompression=yes
-SetupIconFile=C:\Users\pc\Desktop\pyhton\fish\static\logo.ico
-
-; Wizard images (if needed)
-WizardImageFile=C:\Users\pc\Desktop\pyhton\fish\static\appbanner.bmp
-WizardSmallImageFile=C:\Users\pc\Desktop\pyhton\fish\static\logo.bmp
-
-; Silent installation option
-DisableDirPage=no
-DisableProgramGroupPage=yes
-
-; Include Python interpreter and app files
-[Files]
-Source: "C:\Users\pc\Desktop\pyhton\fish\*"; DestDir: "{app}"; Flags: recursesubdirs
-Source: "C:\Users\pc\Desktop\pyhton\fish\venv\*"; DestDir: "{app}\venv"; Flags: recursesubdirs
-Source: "C:\Users\pc\Desktop\pyhton\fish\font\*"; DestDir: "{app}\font"; Flags: recursesubdirs
-Source: "C:\Users\pc\Desktop\pyhton\fish\icons\*"; DestDir: "{app}\icons"; Flags: recursesubdirs
-Source: "C:\Users\pc\Desktop\pyhton\fish\images\*"; DestDir: "{app}\images"; Flags: recursesubdirs
-
-; Create necessary folders
-[Dirs]
-Name: "{app}"; Permissions: everyone-full
-Name: "{localappdata}\FishDealerSoftware"; Permissions: everyone-full
-
-; Registry settings (optional)
-[Registry]
-Root: HKCU; Subkey: "Software\FishDealerSoftware2"; Flags: uninsdeletekey
-
-; Shortcuts
-[Icons]
-Name: "{group}\Fish Dealer Software"; Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"
-Name: "{group}\Uninstall Fish Dealer Software"; Filename: "{uninstallexe}"; IconFilename: "{app}\static\logo.ico"
-Name: "{commondesktop}\Fish Dealer Software"; Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"; Tasks: desktopicon
-
-; Run the application after installation
-[Run]
-Filename: "{app}\venv\Scripts\pythonw.exe"; Parameters: """{app}\main.py"""; WorkingDir: "{app}"; Flags: nowait postinstall
-
-; Uninstaller (removes everything)
-[UninstallDelete]
-Type: filesandordirs; Name: "{app}"
-Type: filesandordirs; Name: "{localappdata}\FishDealerSoftware"
-
-; Optional tasks
-[Tasks]
-Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; Flags: unchecked
+install inno setup software: https://jrsoftware.org/isdl.php
+Open Software, and create a new "Script with setup Wizard" input one by one data
 ```
