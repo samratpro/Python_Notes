@@ -15,6 +15,10 @@ pip install pyarmor
 python convert_to_utf8.py
 python replace_with_obfuscated.py
 ```
+```bash
+pip install cryptography
+```
+
 encrypt.py
 ```py
 import os
