@@ -115,6 +115,7 @@ embeded_python\python -m pip install -r requirements.txt
 - If extra library exit that isn't involve to run script uninstall and if exit in folder delete them
 - PyQt6 (Delete others folder named pyqt6.habijabi...)
 - In PyQt6 keep `all files` and `Qt6 folder` only
+- Delete also `pip` folder and others
 ```
 ### Startup file, main.py or app.py
 add this on header
@@ -123,21 +124,9 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 ```
-### Run
+### Change pythonw.exe to app.exe
 ```
-embeded_python\python app.py
-```
-### runner.bat
-```
-@echo off
-cd /d %~dp0
-python\pythonw.exe app.py
-# python\python.exe app.py
-```
-### run.vbs
-```
-Set WshShell = CreateObject("WScript.Shell")
-WshShell.Run "runner.bat", 0, False
+- under python folder a file name is pythonw.exe change it app.exe
 ```
 ## Example Folder Structure
 ```
@@ -147,7 +136,7 @@ WshShell.Run "runner.bat", 0, False
 - icons
 - images
 - pages
-- python
+- python / app.exe
 - static
 - ui
 app.py
@@ -200,13 +189,14 @@ Root: HKCU; Subkey: "Software\FishDealerSoftware2"; Flags: uninsdeletekey
 
 ; Shortcuts
 [Icons]
-Name: "{group}\Fish Dealer Software"; Filename: "{app}\run.vbs"; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"
+[Icons]
+Name: "{group}\Fish Dealer Software"; Filename: "{app}\python\app.exe"; Parameters: """{app}\app.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"
 Name: "{group}\Uninstall Fish Dealer Software"; Filename: "{uninstallexe}"; IconFilename: "{app}\static\logo.ico"
-Name: "{commondesktop}\Fish Dealer Software"; Filename: "{app}\run.vbs"; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"; Tasks: desktopicon
+Name: "{commondesktop}\Fish Dealer Software"; Filename: "{app}\python\app.exe"; Parameters: """{app}\app.py"""; WorkingDir: "{app}"; IconFilename: "{app}\static\logo.ico"
 
 ; Run the application after installation
 [Run]
-Filename: "{app}\python\pythonw.exe"; Parameters: """{app}\app.py"""; WorkingDir: "{app}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\python\app.exe"; Parameters: """{app}\app.py"""; WorkingDir: "{app}"; Flags: nowait postinstall skipifsilent
 
 ; Uninstaller (removes everything)
 [UninstallDelete]
