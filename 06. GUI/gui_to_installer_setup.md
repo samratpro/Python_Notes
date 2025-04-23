@@ -33,8 +33,8 @@ example path is:  C:\Users\pc\AppData\Local\Programs\Python\Python311\Lib\site-p
 ```
 After completing all click on generate .PY To Exe button, also we can modify the output folder from setting
 ```
-## Generate Certificate
-```
+## Generate Certificate with Powershell
+```bash
 New-SelfSignedCertificate -Type Custom -Subject "CN=Sofmake, O=Sofmake, C=US" -KeyUsage DigitalSignature -FriendlyName "My Friendly Cert Name" -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
 
 Get-ChildItem -Path Cert:\CurrentUser\My  # to see 
@@ -43,13 +43,30 @@ $thumb = "F2D86ADFA91BEEBF4EAF870B406DF5D7F373075E"
 $cert = Get-Item "Cert:\CurrentUser\My\$thumb"
 Export-PfxCertificate -Cert $cert -FilePath "C:\Users\pc\Desktop\fish_dealer_software\output\MyCertbing.pfx" -Password (Read-Host -AsSecureString "Enter password")
 ```
+- Input password example: 1234
 ## Apply Certificate
 ```
-- open signgui
+- open signgui Software
 - C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe (Eample : SingTool location)
-- C:\Users\pc\Desktop\fish_dealer_software\output\MyCertbing.pfx (PFX file, password : given password to generate file)
+- C:\Users\pc\Desktop\fish_dealer_software\output\MyCertbing.pfx (PFX file, password : given example `1234` password to generate file)
+- http://timestamp.sectigo.com (Example: timestamp Services)
 - C:\Users\pc\Desktop\fish_dealer_software\output\app.exe (Output)
 - SHA 256 (Signurate)
+- Press `SingFile` Buttom
+```
+## Install Certificate
+```
+- from app.exe file, right click and open Properties
+- Go Digital Signature
+- Click on Signature from - Signature List
+- Then Click Details
+- Then Click `View Certificate`
+- Then Click `Install Certificate`
+- Then Click on `Current User`
+- Then Click on `All Certificates in the following store`
+- Then Opne `Certificate Store` browse file
+- Then Select `Trusted Root Certification Authorities`
+- Then Click `Next` and Finish
 ```
 
 ## 03. Packging
