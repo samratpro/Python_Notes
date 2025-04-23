@@ -109,6 +109,13 @@ embeded_python\python -m pip freeze > requirements.txt
 embeded_python\python -m pip uninstall -y -r requirements.txt
 embeded_python\python -m pip install -r requirements.txt
 ```
+### Clean Packages
+```
+- Install only necessary packages/library that will run script
+- If extra library exit that isn't involve to run script uninstall and if exit in folder delete them
+- PyQt6 (Delete others folder named pyqt6.habijabi...)
+- In PyQt6 keep `all files` and `Qt6 folder` only
+```
 ### Startup file, main.py or app.py
 add this on header
 ```py
