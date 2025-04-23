@@ -69,7 +69,7 @@ Export-PfxCertificate -Cert $cert -FilePath "C:\Users\pc\Desktop\fish_dealer_sof
 - Then Click `Next` and Finish
 ```
 
-## 03. Packging
+## 03. Packging & Apply Certificate again after installer exe setup
 ```
 install inno setup software: https://jrsoftware.org/isdl.php
 Open Software, and create a new "Script with setup Wizard" input one by one data
