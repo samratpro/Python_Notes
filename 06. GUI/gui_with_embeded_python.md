@@ -206,7 +206,7 @@ Name: "{commondesktop}\Fish Dealer Software"; Filename: "{app}\run.vbs"; Working
 
 ; Run the application after installation
 [Run]
-Filename: "{app}\run.vbs"; Description: "{cm:LaunchProgram, Fish Dealer Software}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\python\pythonw.exe"; Parameters: """{app}\app.py"""; WorkingDir: "{app}"; Flags: nowait postinstall skipifsilent
 
 ; Uninstaller (removes everything)
 [UninstallDelete]
