@@ -87,6 +87,7 @@ https://www.python.org/downloads/macos/
 ```
 - Download unzip and keep embeded python in same project directory
 - Example rename here `embeded_python`
+- But for real uses only keep `python` folder for best practice
 ### Prepare pip 
 ```cmd
 curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
