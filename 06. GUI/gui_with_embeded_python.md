@@ -207,5 +207,17 @@ Type: filesandordirs; Name: "{localappdata}\FishDealerSoftware"
 [Tasks]
 Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; Flags: unchecked
 ```
+## Run without installer
+run.vbs
+```
+Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run "runner.bat", 0, False
+```
+runner.bat
+```
+@echo off
+cd /d %~dp0
+python\app.exe app.py
+```
 
 
