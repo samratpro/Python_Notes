@@ -176,7 +176,6 @@ Source: "C:\Users\pc\Desktop\pyhton\fish_dealer_software\python\*"; DestDir: "{a
 Source: "C:\Users\pc\Desktop\pyhton\fish_dealer_software\font\*"; DestDir: "{app}\font"; Flags: recursesubdirs
 Source: "C:\Users\pc\Desktop\pyhton\fish_dealer_software\icons\*"; DestDir: "{app}\icons"; Flags: recursesubdirs
 Source: "C:\Users\pc\Desktop\pyhton\fish_dealer_software\images\*"; DestDir: "{app}\images"; Flags: recursesubdirs
-Source: "C:\Users\pc\Desktop\pyhton\fish_dealer_software\run.vbs"; DestDir: "{app}"
 
 ; Create necessary folders
 [Dirs]
