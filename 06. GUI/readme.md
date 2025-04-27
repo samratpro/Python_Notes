@@ -213,13 +213,15 @@ users = session.query(User).filter_by(name='John', age=30).all()
 ## Filtering Rows
 | Method                          | Description                                         | Example                                                                 |
 |---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
-| `.filter()`                     | Apply conditions using comparison operators.        | `session.query(User).filter(User.age > 18).all()`                      |
-| `.filter_by()`                  | Simple equality filter (no advanced expressions).   | `session.query(User).filter_by(name="John").all().first()`                     |
-| `.between()`                    | Filter values in a range.                          | `session.query(User).filter(User.age.between(18, 30)).all()`           |
-| `.between()`                    | Filter date in a range.                            | `session.query(User).filter(Model.date_field.between(start_date.toPyDate(), end_date.toPyDate())).all()`|
-| `.in_()`                        | Match a value in a list.                           | `session.query(User).filter(User.name.in_(["Alice", "Bob"])).all()`    |
-| `.like()`                       | SQL `LIKE` for pattern matching.                   | `session.query(User).filter(User.name.like(f"%{data}%")).all()`               |
-| `.ilike()`                      | Case-insensitive `LIKE`.                           | `session.query(User).filter(User.name.ilike(f"%{data}%")).all()`              |
+| `.filter()`                     | Apply conditions using comparison operators.        | `session.query(User).filter(User.age > 18).all()`                       |
+| `multiple .filter()`            | multiple filter                                     | `session.query(User).filter(User.age > 18, User.name == "Jhon").all()`  |
+| `.filter_by()`                  | Simple equality filter (no advanced expressions).   | `session.query(User).filter_by(name="John").all().first()`              |
+| `multiple .filter_by()`         | multiple filter_by                                  | `session.query(User).filter_by(name="John", age==30).all()`             |
+| `.between()`                    | Filter values in a range.                           | `session.query(User).filter(User.age.between(18, 30)).all()`            |
+| `.between()`                    | Filter date in a range.                             | `session.query(User).filter(Model.date_field.between(start_date.toPyDate(), end_date.toPyDate())).all()`|
+| `.in_()`                        | Match a value in a list.                            | `session.query(User).filter(User.name.in_(["Alice", "Bob"])).all()`      |
+| `.like()`                       | SQL `LIKE` for pattern matching.                    | `session.query(User).filter(User.name.like(f"%{data}%")).all()`          |
+| `.ilike()`                      | Case-insensitive `LIKE`.                            | `session.query(User).filter(User.name.ilike(f"%{data}%")).all()`         |
 | `multiple .ilike()`                      | Case-insensitive `LIKE`.                           | `conditions=[Model.name.ilike(f"%field%"),Model.name2.ilike(f"%field2%")]\n query = session.query(Model).filter(or_(*conditions)) # or_ imported`              |
 | `multiple .ilike()`                      | Case-insensitive `LIKE`.                           | `query = query.filter(DealerModel.name.ilike(f"%{search_name}%") "or_symbol" DealerModel.description.ilike(f"%{search_name}%"))`              |
 | `.is_()`                        | Check for `None` or boolean values.                | `session.query(User).filter(User.active.is_(True)).all()`              |
