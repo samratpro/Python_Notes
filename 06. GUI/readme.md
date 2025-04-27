@@ -98,8 +98,7 @@ for page in website.pages:
     print(f"Page URL: {page.url}, Content: {page.content}")
 ```
 ```py
-website_id = website.id
-pages = session.query(Page).filter_by(website_id=website_id).all()
+pages = session.query(Page).filter_by(website_id=website.id).all()
 
 for page in pages:
     print(f"Page URL: {page.url}, Content: {page.content}")
