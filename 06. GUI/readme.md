@@ -41,7 +41,7 @@ class Website(Base):
     name = Column(String, nullable=False)
     url = Column(String, nullable=False)
 
-    # Relationship to connect website with its pages
+    # Relationship to connect website with its pages  back_populates='website' is Page.website
     pages = relationship('Page', back_populates='website', cascade='all, delete-orphan')
 
 # Page Model
@@ -55,7 +55,7 @@ class Page(Base):
     # Foreign key linking to Website
     website_id = Column(Integer, ForeignKey('websites.id'))
     
-    # Relationship to access website from page
+    # Relationship to access website from page  back_populates='pages' is Website.pages
     website = relationship('Website', back_populates='pages')
 
 # Create SQLite engine and session
