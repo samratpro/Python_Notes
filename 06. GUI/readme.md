@@ -209,13 +209,11 @@ users = session.query(User).filter_by(name='John', age=30).all()
 
 ---
 
-## Filtering Rows
+## Common Filtering
 | Method                          | Description                                         | Example                                                                 |
 |---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
 | `.filter()`                     | Apply conditions using comparison operators.        | `session.query(User).filter(User.age > 18).all()`                       |
-| `multiple .filter()`            | multiple filter                                     | `session.query(User).filter(User.age > 18, User.name == "Jhon").all()`  |
 | `.filter_by()`                  | Simple equality filter (no advanced expressions).   | `session.query(User).filter_by(name="John").all().first()`              |
-| `multiple .filter_by()`         | multiple filter_by                                  | `session.query(User).filter_by(name="John", age==30).all()`             |
 | `.between()`                    | Filter values in a range.                           | `session.query(User).filter(User.age.between(18, 30)).all()`            |
 | `.between()`                    | Filter date in a range.                             | `session.query(User).filter(Model.date_field.between(start_date.toPyDate(), end_date.toPyDate())).all()`|
 | `.in_()`                        | Match a value in a list.                            | `session.query(User).filter(User.name.in_(["Alice", "Bob"])).all()`      |
