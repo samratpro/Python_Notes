@@ -213,6 +213,7 @@ users = session.query(User).filter_by(name='John', age=30).all()
 | Method                          | Description                                         | Example                                                                 |
 |---------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
 | `.filter()`                     | Apply conditions using comparison operators.        | `session.query(User).filter(User.age > 18).all()`                       |
+| `.filter()` multiple            | Multiple argument                                   | `session.query(User).filter(User.age > 18, User.type == "new").all()`   |
 | `.filter_by()`                  | Simple equality filter (no advanced expressions).   | `session.query(User).filter_by(name="John").all().first()`              |
 | `.between()`                    | Filter values in a range.                           | `session.query(User).filter(User.age.between(18, 30)).all()`            |
 | `.between()`                    | Filter date in a range.                             | `session.query(User).filter(Model.date_field.between(start_date.toPyDate(), end_date.toPyDate())).all()`|
