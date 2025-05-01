@@ -224,9 +224,8 @@ users = session.query(User).filter_by(name='John', age=30).all()
 | `multiple .ilike()`                      | Case-insensitive `LIKE`.                           | `query = query.filter(DealerModel.name.ilike(f"%{search_name}%") "or_symbol" DealerModel.description.ilike(f"%{search_name}%"))`              |
 | `.is_()`                        | Check for `None` or boolean values.                | `session.query(User).filter(User.active.is_(True)).all()`              |
 | `.startswith()`/`.endswith()`   | String starts/ends with specific text.             | `session.query(User).filter(User.name.startswith("A")).all()`          |
-
 ---
-## Excluding
+## Excluding / Including
 ```py
 from sqlalchemy import not_
 ```
@@ -246,6 +245,19 @@ from sqlalchemy import and_, or_
 | `and_()`                        | Combines multiple conditions using `AND`.           | `session.query(User).filter(and_(User.age > 18, User.active == True))` |
 | `or_()`                         | Combines multiple conditions using `OR`.            | `session.query(User).filter(or_(User.age < 18, User.active == True))`  |
 | Chained `.filter()`             | Implicit `AND` by chaining `.filter()` calls.       | `session.query(User).filter(User.age > 18).filter(User.active == True)`|
+Example large combination query
+```py
+payers = (
+                self.session.query(DealerModel)
+                .filter(
+                    DealerModel.name == self.payer_name,
+                    and_(
+                        DealerModel.entry_name.in_(["borrowing", "loan_repayment"]),
+                        DealerModel.date.between(start_date, end_date) 
+                    )
+                )
+            ).all()
+```
 
 ---
 
