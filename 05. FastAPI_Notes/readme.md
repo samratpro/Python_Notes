@@ -5,6 +5,7 @@ pip install "fastapi[all]"
 ### Run Server
 ```bash
 uvicorn file_name:app --reload
+uvicorn app.file_name:app --reload
 ```
 ### Load Server
 ```bash
