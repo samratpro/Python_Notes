@@ -44,6 +44,15 @@ docker logs your_container_name
 docker-compose logs -f celery_worker    # Verify Celery Worker
 docker-compose logs celery_worker_app1   # celery worker1 logs
 docker-compose logs celery_worker_app2   # celery worker2 logs
+
+# List all containers (running and stopped)
+docker ps -a
+# Stop all running containers
+docker stop $(docker ps -aq)
+# Remove all containers
+docker rm $(docker ps -aq)
+# Remove all unused networks
+docker network prune
 ```
 
 ## How to add Docker secrect key in github action
