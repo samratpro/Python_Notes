@@ -1,4 +1,6 @@
-{% extends 'dashboard/base.html' %}
+<!-- user/register_html/register.html -->
+
+{% extends 'base.html' %}
 {% load static %}
 {% block basecontent %}
 
@@ -21,15 +23,6 @@
       </div>
     </div>
     
-    <div class="mb-3">
-      <label class="mb-1">User Type</label>
-      <select name="user_type" class="form-select form-select-lg mb-3" aria-label="Default select example">
-          <option value="teacher">Teacher</option>
-          <option value="student">Student</option>
-      </select>
-    </div>
-
-
     <div class="mb-3">
       <label class="mb-1">Email Address</label>
       <input name="email" type="email" class="form-control" required>
