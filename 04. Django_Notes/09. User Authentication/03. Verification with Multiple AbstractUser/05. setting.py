@@ -25,3 +25,5 @@ AUTHENTICATION_BACKENDS = [
     'App_Name.auth_email.EmailBackend',           # App name must be current app name
 ]
 
+
+PASSWORD_RESET_TIMEOUT = 60 * 60
