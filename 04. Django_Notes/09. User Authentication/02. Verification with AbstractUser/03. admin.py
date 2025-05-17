@@ -3,7 +3,7 @@ from .models import AppUser  # Replace with your custom user model
 # from .models import Customer
 
 
-admin.site.register(AppUser)
+# admin.site.register(AppUser)
 # admin.site.register(Customer)
 
 # Changing the Django Admin Header Text
