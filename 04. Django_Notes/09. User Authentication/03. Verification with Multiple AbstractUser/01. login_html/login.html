@@ -1,6 +1,8 @@
+<!-- user/login_html/login.html -->
+
 {% extends 'base.html' %}    <!-- in ``base.html`` block ``content`` section will replace this file -->
 {% load static %}            <!-- ``static`` is for CSS, image JS static files support -->
-{% block content %}          <!--  block ``content``  will replace ``base.html`` section  ``content`` -->
+{% block basecontent %}          <!--  block ``content``  will replace ``base.html`` section  ``content`` -->
 
 
 
@@ -24,7 +26,7 @@
                 Remeber this Device
               </label>
             </div>
-            <a class="text-primary fw-bold" href="{% url 'forget' %}">Forgot Password ?</a>
+            <a class="text-primary fw-bold" href="{% url 'forget_password' %}">Forgot Password ?</a>
         </div>
         
         <div class="form-group">      <!-- type="submit" will read django -->
@@ -49,4 +51,4 @@
 
 </div>
 
-{% endblock content %}
+{% endblock basecontent %}
