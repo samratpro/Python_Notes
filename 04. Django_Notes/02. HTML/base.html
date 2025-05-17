@@ -8,17 +8,8 @@
     {% block meta %}{% endblock %}
 </head>
 <body>
-  <header>
-      <nav> 
-          <a href=" {% url 'home' %} "> </a>        <!--  ............................. Home is Render Function from View, and Urls -->
-      </nav>
-    </header>
-  <main>
-      
-    {% block content %}        <!-- ................................................... We can use "body" or anything instead of content -->               
-    {% endblock %}
-      
-  </main>
-  <footer></footer>
+{% block basecontent %}
+ 
+{% endblock basecontent %}
 </body>
 </html>
