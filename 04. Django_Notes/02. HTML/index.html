@@ -7,21 +7,15 @@
 
 {% block basecontent %}
   <header>
-    {% block header %}
-      <h1>My Django App</h1>
-      <nav>
-        <ul>
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'contact' %}">Contact</a></li>
-        </ul>
+      <nav> 
+          <a href=" {% url 'home' %} "> </a>        <!--  ............................. Home is Render Function from View, and Urls -->
       </nav>
-    {% endblock %}
-  </header>
+    </header>
   <main>
-    {% block content %}      
-
+      
+    {% block content %}        <!-- ................................................... We can use "body" or anything instead of content -->               
     {% endblock %}
+      
   </main>
   <footer></footer>
 {% endblock %}
