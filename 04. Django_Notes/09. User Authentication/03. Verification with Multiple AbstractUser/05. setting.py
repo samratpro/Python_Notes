@@ -22,7 +22,7 @@ AUTH_USER_MODEL = 'userapp.AppUser'    # ----------------- userapp is app name h
 # This is required for admin backend
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'UserApp.auth_email.EmailBackend',           # App name must be current app name
+    'userapp.auth_email.EmailBackend',           # App name must be current app name
 ]
 
 
