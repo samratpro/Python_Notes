@@ -4,11 +4,169 @@
 {% load static %}
 {% block basecontent %}
 
-<div class="container-fluid">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-5 text-center">
+                    <!-- Success Icon -->
+                    <div class="activation-success-icon mb-4">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="success-ring"></div>
+                    </div>
 
-      <h1> Active Success </h1>
-      <a name="" id="" class="btn btn-primary" href="{% url "login" %}" role="button"> Login Now</a>
+                    <!-- Logo Section -->
+                    <div class="text-center mb-4">
+                        <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-img">
+                        <div class="brand-name">Sofmake</div>
+                    </div>
 
+                    <h2 class="activation-success-text mb-3">Account Activated!</h2>
+                    
+                    <p class="text-muted mb-4">
+                        Your account has been successfully activated. You can now sign in and start using our services.
+                    </p>
+
+                    <div class="d-grid gap-3">
+                        <a href="{% url 'login' %}" class="btn btn-dark py-3 custom-button">
+                            <i class="fas fa-sign-in-alt me-2"></i>
+                            Sign In Now
+                        </a>
+                    </div>
+
+                    <div class="welcome-info mt-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-gift me-2"></i>
+                            <small class="text-muted">Welcome to our community! We're excited to have you on board.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4 terms-text">
+                <small>
+                    Need help getting started? Check out our <a href="#" class="terms-link">Quick Start Guide</a>
+                </small>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Add only new styles specific to activation success page -->
+<style>
+.activation-success-icon {
+    position: relative;
+    display: inline-block;
+    font-size: 4rem;
+    color: #28a745;
+    animation: scaleIn 0.5s ease-out;
+}
+
+.success-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border: 4px solid #28a745;
+    border-radius: 50%;
+    opacity: 0;
+    animation: ringPulse 1.5s ease-out infinite;
+}
+
+.activation-success-text {
+    color: #28a745;
+    font-weight: 600;
+    animation: slideUp 0.5s ease-out;
+}
+
+.welcome-info {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid #28a745;
+}
+
+.welcome-info i {
+    color: #28a745;
+    font-size: 1.2rem;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes ringPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.custom-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.custom-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.6s ease;
+}
+
+.custom-button:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+@media (max-width: 576px) {
+    .activation-success-icon {
+        font-size: 3rem;
+    }
+    
+    .success-ring {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .card-body {
+        padding: 2rem !important;
+    }
+    
+    .welcome-info {
+        font-size: 0.85rem;
+    }
+}
+</style>
 
 {% endblock basecontent %}
