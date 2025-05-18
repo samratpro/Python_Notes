@@ -4,54 +4,122 @@
 {% load static %}
 {% block basecontent %}
 
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-5">
+                    <!-- Logo Section -->
+                    <div class="text-center mb-4">
+                        <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-img">
+                        <div class="brand-name">Sofmake</div>
+                    </div>
 
-  <p class="text-center mt-3 mb-4">Register Account</p>
-  
-  <form action="" method="post">
-    
-    {% csrf_token %}
-    
-    <div class="mb-3 row">
-      <div class="col-6">
-        <label class="mb-1">First Name</label>
-        <input name="first_name" type="text" class="form-control" required>
-      </div>
-      
-      <div class="col-6">
-        <label class="mb-1">Last Name</label>
-        <input name="last_name" type="text" class="form-control" required>
-      </div>
+                    <h3 class="text-center mb-4 register-text">Create Your Account</h3>
+                    
+                    <form action="" method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3 mb-sm-0">
+                                    <input type="text" name="first_name" class="form-control custom-input" 
+                                           id="floatingFirstName" placeholder="John" required>
+                                    <label for="floatingFirstName">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="text" name="last_name" class="form-control custom-input" 
+                                           id="floatingLastName" placeholder="Doe" required>
+                                    <label for="floatingLastName">Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="email" name="email" class="form-control custom-input" 
+                                   id="floatingEmail" placeholder="name@example.com" required>
+                            <label for="floatingEmail">Email Address</label>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3 mb-sm-0">
+                                    <input type="password" name="password1" class="form-control custom-input" 
+                                           id="floatingPassword" placeholder="Password" required>
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="password" name="password2" class="form-control custom-input" 
+                                           id="floatingConfirmPassword" placeholder="Confirm Password" required>
+                                    <label for="floatingConfirmPassword">Confirm Password</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark w-100 py-3 custom-button">
+                            Create Account
+                        </button>
+
+                        <div class="text-center mt-4">
+                            <span class="text-muted">Already have an account?</span>
+                            <a href="{% url 'login' %}" class="ms-2 forgot-link">Sign In</a>
+                        </div>
+                    </form>
+
+                    {% if messages %}
+                    <div class="alert custom-alert alert-dismissible fade show mt-4" role="alert">
+                        {% for message in messages %}
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            <span>{{ message }}</span>
+                        </div>
+                        {% endfor %}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="text-center mt-4 terms-text">
+                <small>
+                    By creating an account, you agree to our 
+                    <a href="#" class="terms-link">Terms of Service</a> and 
+                    <a href="#" class="terms-link">Privacy Policy</a>
+                </small>
+            </div>
+        </div>
     </div>
+</div>
+
+<!-- Add only new styles specific to registration -->
+<style>
+.register-text {
+    font-size: 1.2rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 576px) {
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
     
-    <div class="mb-3">
-      <label class="mb-1">Email Address</label>
-      <input name="email" type="email" class="form-control" required>
-    </div>
+    .col-sm-6 {
+        padding-right: 0;
+        padding-left: 0;
+    }
     
-    <div class="row">
-      <div class="mb-4 col-6">
-        <label class="mb-1">Password</label>
-        <input name="password1" type="password" class="form-control" required>
-      </div>
-      <div class="mb-4 col-6">
-        <label class="mb-1">Confirm Password</label>
-        <input name="password2" type="password" class="form-control" required>
-      </div>
-    </div>
+    .mb-sm-0 {
+        margin-bottom: 1rem !important;
+    }
+}
+</style>
 
-    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2"> Sign Up </button>
-    <div class="d-flex align-items-center justify-content-center">
-      <p class="fs-3 mb-0 fw-bold">Already have an Account?</p>
-      <a class="text-primary fw-bold ms-2" href="{% url 'login' %}">Sign In</a>
-    </div>
-  </form>
-
-  <div class="mt-2 mb-5 p-1 text-center fs-4 text-danger font-weight-bold">
-
-    {% for message in messages %}
-        <p style="color:red" class="font-weight-bold mb-4">{{message}}</p>
-    {% endfor %}
-
-  </div>
-
-  {% endblock basecontent %}
+{% endblock basecontent %}
