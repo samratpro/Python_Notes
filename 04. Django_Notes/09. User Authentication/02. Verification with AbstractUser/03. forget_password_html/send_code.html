@@ -2,29 +2,148 @@
 
 {% extends 'base.html' %}
 {% load static %}
-
 {% block basecontent %}
 
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-5">
+                    <!-- Logo Section -->
+                    <div class="text-center mb-4">
+                        <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-img">
+                        <div class="brand-name">Sofmake</div>
+                    </div>
 
-  <p class="text-center">Send a code in your mail</p>
+                    <div class="text-center mb-4">
+                        <h2 class="verify-text mb-3">Verify Your Email</h2>
+                        <p class="text-muted">
+                            We'll send a verification code to your email address
+                        </p>
+                    </div>
+                    
+                    <form action="" method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        <div class="form-floating mb-4">
+                            <input type="email" name="email" class="form-control custom-input" 
+                                   id="floatingEmail" placeholder="name@example.com" required>
+                            <label for="floatingEmail">Email Address</label>
+                        </div>
 
-  <form action="" method="post">
-    {% csrf_token %}
-    <div class="mb-3">
-      <label class="form-label">Email Address</label>
-      <input name="email" type="email" class="form-control" required>
+                        <button type="submit" class="btn btn-dark w-100 py-3 custom-button">
+                            <i class="fas fa-paper-plane me-2"></i>
+                            Send Verification Code
+                        </button>
+
+                        <div class="text-center mt-4">
+                            <span class="text-muted">Remember your password?</span>
+                            <a href="{% url 'login' %}" class="ms-2 forgot-link">Sign In</a>
+                        </div>
+                    </form>
+
+                    {% if messages %}
+                    <div class="alert custom-alert alert-dismissible fade show mt-4" role="alert">
+                        {% for message in messages %}
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            <span>{{ message }}</span>
+                        </div>
+                        {% endfor %}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+
+                    <div class="email-info mt-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-info-circle text-primary me-2"></i>
+                            <small class="text-muted">The code will expire in 10 minutes</small>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-shield-alt text-primary me-2"></i>
+                            <small class="text-muted">Check your spam folder if you don't see the email</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4 terms-text">
+                <small>
+                    Need help? <a href="#" class="terms-link">Contact Support</a>
+                </small>
+            </div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Send Code</button>
-    <div class="d-flex align-items-center justify-content-center">
-      <p class="fs-4 mb-0 fw-bold">or </p>
-      <a class="text-primary fw-bold ms-2" href="{% url 'login' %}">Sign In</a>
-    </div>
-  </form>
+</div>
 
-  <div class="mt-2 mb-5 p-1 text-center fs-4 text-danger font-weight-bold">
-      {% for message in messages %}
-          <p style="color:red" class="font-weight-bold mb-4">{{message}}</p>
-      {% endfor %}
-  </div>
+<!-- Add only new styles specific to send code page -->
+<style>
+.verify-text {
+    color: var(--primary-color);
+    font-weight: 600;
+    animation: fadeIn 0.5s ease-out;
+}
 
-  {% endblock basecontent %}
+.email-info {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+
+.email-info i {
+    font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading state for button */
+.custom-button.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.custom-button.loading::after {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    margin-left: 0.5rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 576px) {
+    .email-info {
+        font-size: 0.85rem;
+    }
+}
+</style>
+
+<script>
+// Add loading state to button when form is submitted
+document.querySelector('form').addEventListener('submit', function(e) {
+    const button = this.querySelector('button[type="submit"]');
+    button.classList.add('loading');
+    button.innerHTML = 'Sending Code...';
+});
+</script>
+
+{% endblock basecontent %}
