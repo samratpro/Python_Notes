@@ -2,6 +2,8 @@
 {% load static %}
 {% block meta %}
     <title>My First Django App</title>
+{% endblock %}
+{% block css %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
@@ -18,4 +20,7 @@
       
   </main>
   <footer></footer>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/function.js' %}"></script>
 {% endblock %}
