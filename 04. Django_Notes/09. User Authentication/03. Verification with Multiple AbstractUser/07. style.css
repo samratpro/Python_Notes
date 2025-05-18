@@ -1,0 +1,180 @@
+:root {
+    --primary-color: #19042D;
+    --secondary-color: #7F56D8;
+    --text-muted: #6c757d;
+    --border-radius: 10px;
+    --transition: all 0.3s ease;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: var(--text-muted);
+}
+
+/** Login Page  **/
+
+/* Logo Styles */
+.logo-img {
+    width: 60px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+/* Card Styles */
+.card {
+    transition: var(--transition);
+    border-radius: var(--border-radius);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Form Styles */
+.custom-input {
+    border: 2px solid #e9ecef;
+    border-radius: var(--border-radius);
+    padding: 12px;
+    transition: var(--transition);
+}
+
+.custom-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(33, 37, 41, 0.1);
+}
+
+.custom-checkbox:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Button Styles */
+.custom-button {
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+.custom-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.custom-outline-btn {
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.custom-outline-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Divider Styles */
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #dee2e6;
+}
+
+.divider span {
+    background-color: #fff;
+    padding: 0 1rem;
+    color: var(--text-muted);
+    position: relative;
+    font-size: 0.9rem;
+}
+
+/* Link Styles */
+.forgot-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.forgot-link:hover {
+    color: var(--secondary-color);
+}
+
+/* Alert Styles */
+.custom-alert {
+    border-radius: var(--border-radius);
+    border-left: 4px solid #FE5D26;
+    background-color: #fff;
+}
+
+/* Terms Text Styles */
+.terms-text {
+    color: var(--text-muted);
+}
+
+.terms-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.terms-link:hover {
+    color: var(--secondary-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .card-body {
+        padding: 2rem !important;
+    }
+    
+    .logo-img {
+        width: 60px;
+    }
+    
+    .brand-name {
+        font-size: 1.3rem;
+    }
+    
+    .welcome-text {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to card */
+.card {
+    animation: fadeIn 0.6s ease-out;
+}
