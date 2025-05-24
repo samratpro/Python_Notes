@@ -34,9 +34,10 @@ def login(request):
 
 
 # Must be follow this function
+@login_required(login_url='/login/')
 def logout(request):
     auth.logout(request)
-    return redirect('/')
+    return redirect('/login/')
 
 
 # Register account
