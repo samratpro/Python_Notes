@@ -1,0 +1,386 @@
+:root {
+    --sidebar-width: 250px;
+    --sidebar-collapsed-width: 70px;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    min-height: 100vh;
+    background: #2c3e50;
+    color: white;
+    width: var(--sidebar-width);
+    position: fixed;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    transform-origin: left;
+    will-change: transform;
+}
+
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+}
+
+.main-content {
+    margin-left: var(--sidebar-width);
+    transition: all 0.3s;
+}
+
+.main-content.expanded {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
+.sidebar .nav-link {
+    color: rgba(255,255,255,.8);
+    padding: 1rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.sidebar .nav-link:hover {
+    background: rgba(255,255,255,.1);
+    color: white;
+}
+
+.sidebar .nav-link.active {
+    background: rgba(255,255,255,.2);
+    color: white;
+}
+
+.sidebar .nav-text {
+    margin-left: 10px;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.sidebar.collapsed .nav-text {
+    opacity: 0;
+    display: none;
+}
+
+.bottom-menu {
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    border: none;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.toggle-sidebar {
+    position: fixed;
+    top: 20px;
+    left: var(--sidebar-width);
+    z-index: 1000;
+    transition: all 0.3s;
+    background: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 6px 0 #8f8f8f;
+}
+
+.toggle-sidebar.collapsed {
+    left: var(--sidebar-collapsed-width);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.table {
+    min-width: 600px;
+}
+
+.scrolling-wrapper {
+    -webkit-overflow-scrolling: touch;
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.software-card, .category-card, .device-card {
+    transition: all 0.3s ease;
+    will-change: transform;
+}
+
+.software-card:hover, .category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.software-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.device-card {
+    border: 1px solid #e9ecef;
+    border-left: 4px solid #3498db;
+    border-radius: 10px;
+}
+
+.device-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,.1);
+}
+
+.device-icon {
+    width: 40px;
+    height: 40px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.device-icon i {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.active {
+    background-color: #28a745;
+}
+
+.status-dot.inactive {
+    background-color: #6c757d;
+}
+
+.device-count {
+    background: #f8f9fa;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.device-meta i {
+    font-size: 12px;
+}
+
+.device-type {
+    width: 48px;
+    height: 48px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.device-type i {
+    color: #6c757d;
+}
+
+.device-info {
+    min-width: 0;
+}
+
+.device-meta {
+    font-size: 0.85rem;
+}
+
+.software-icon {
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.license-info {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.device-badge {
+    background: #e9ecef;
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    color: #495057;
+}
+
+.btn.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn.loading::after {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 250px;
+        --sidebar-collapsed-width: 0;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        z-index: 1050;
+        width: var(--sidebar-width);
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(0);
+    }
+
+    .sidebar.collapsed .nav-text {
+        opacity: 1;
+        display: inline-block;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .main-content.expanded {
+        margin-left: 0;
+    }
+
+    .toggle-sidebar {
+        left: 10px;
+        top: 10px;
+        z-index: 1100;
+    }
+
+    .toggle-sidebar.collapsed {
+        left: calc(var(--sidebar-width) - 45px);
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .table-responsive {
+        margin: -1rem;
+    }
+
+    .px-4 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .software-card .card-img-top {
+        height: 150px;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    .device-card {
+        margin-bottom: 1rem;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .device-count {
+        margin-top: 0.5rem;
+    }
+
+    .device-info .d-flex {
+        flex-direction: column;
+    }
+
+    .device-info .btn {
+        margin-top: 1rem;
+        margin-left: 0 !important;
+        width: 100%;
+    }
+
+    .device-meta {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .device-meta span {
+        margin-bottom: 0.25rem;
+    }
+
+    .device-type {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-control {
+        font-size: 16px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .d-flex.gap-2 {
+        flex-wrap: wrap;
+    }
+
+    .d-flex.gap-2 .btn {
+        flex: 1 1 calc(50% - 0.5rem);
+    }
+}
