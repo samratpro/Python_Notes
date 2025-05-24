@@ -11,7 +11,7 @@ from django.contrib.auth.admin import UserAdmin
 
 class AppUserAdmin(UserAdmin):
     model = AppUser
-    list_display = ('email', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser')
+    list_display = ('email', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', 'date_joined')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions')
@@ -23,7 +23,7 @@ class AppUserAdmin(UserAdmin):
             'fields': ('is_active', 'is_staff', 'is_superuser', 'is_teacher', 'is_student', 'groups', 'user_permissions'),
         }),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
-        ('Custom Fields', {'fields': ('activation_code', 'password_reset_code', 'profile_image', 'credit', 'is_teacher', 'is_student')}),
+        ('Custom Fields', {'fields': ('activation_code', 'password_reset_code', 'profile_image', 'credit', 'is_teacher', 'is_student', 'email_notifications', 'device_login_alerts', 'newsletter')}),
     )
     # allow them when creating a new user in the admin panel.
     add_fieldsets = (
