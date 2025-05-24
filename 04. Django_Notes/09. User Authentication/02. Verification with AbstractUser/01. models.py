@@ -55,6 +55,10 @@ class AppUser(AbstractUser):
     password_reset_code = models.CharField(max_length=50, blank=True, null=True)
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
     credit = models.IntegerField(default=0)
+
+    email_notifications = models.BooleanField(default=True)
+    device_login_alerts = models.BooleanField(default=True)
+    newsletter = models.BooleanField(default=True)
     
     # Remove related_name for groups and user_permissions
     # Best uses is not using, where dosen't have mulple user role
