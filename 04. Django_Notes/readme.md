@@ -21,6 +21,7 @@ python manage.py startapp "appname"
 ### 03. Server Running..
 ```bash
 python manage.py runserver / python manage.py runserver 0.0.0.0:8000 --noreload
+python manage.py shell -c "from django.core.cache import cache; cache.clear()" && python manage.py runserver
 Ctrl + C   # server stop
 ```
 ### 04. For database migrations
