@@ -156,31 +156,63 @@ def forget_password_confirm(request, forget_code):
 
 
 
-@login_required(login_url='login')
-def profile(request):
-    user_profile = AppUser.objects.get(email=request.user.email)
-    if request.method == 'POST':
-        profile_image = request.FILES.get('img_upload')
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-        password1 = request.POST.get('password1')
-        password2 = request.POST.get('password2')
+@login_required(login_url='/login/')
+def setting(request):
+    user = request.user
 
-        if first_name:
-            user_profile.first_name = first_name
-            user_profile.save()
-        if last_name:
-            user_profile.last_name = last_name
-            user_profile.save()
-        if email:
-            user_profile.email = email
-            user_profile.save()
-        if password1 and password1 == password2:
-            user_profile.set_password(password1)
-            user_profile.save()
-        if profile_image:
-            user_profile.profile_image = profile_image
-            user_profile.save()
-        return redirect('profile')
-    return render(request, 'user/profile/profile.html', {'user_profile': user_profile})
+    if request.method == 'POST':
+        # Handle Profile Settings Form
+        if 'email' in request.POST:
+            email = request.POST.get('email')
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+
+            try:
+                # Validate email format
+                validate_email(email)
+                # Check if email is already taken by another user
+                if AppUser.objects.filter(email__iexact=email).exclude(id=user.id).exists():
+                    messages.error(request, 'This email is already in use.')
+                else:
+                    user.email = email.lower()
+                    user.first_name = first_name
+                    user.last_name = last_name
+                    user.save()
+                    messages.success(request, 'Profile updated successfully.')
+            except ValidationError:
+                messages.error(request, 'Invalid email format.')
+
+        # Handle Password Change Form
+        elif 'current_password' in request.POST:
+            current_password = request.POST.get('current_password')
+            new_password = request.POST.get('new_password')
+            confirm_password = request.POST.get('confirm_new_password')
+
+            if not user.check_password(current_password):
+                messages.error(request, 'Current password is incorrect.')
+            elif new_password != confirm_password:
+                messages.error(request, 'New passwords do not match.')
+            elif len(new_password) < 8:  # Basic password validation
+                messages.error(request, 'New password must be at least 8 characters long.')
+            else:
+                user.set_password(new_password)
+                user.save()
+                # Keep user logged in after password change
+                update_session_auth_hash(request, user)
+                messages.success(request, 'Password updated successfully.')
+
+        # Handle Notification Settings Form
+        elif 'email_notifications' in request.POST:
+            user.email_notifications = 'email_notifications' in request.POST
+            user.device_login_alerts = 'device_login_alerts' in request.POST
+            user.newsletter = 'newsletter' in request.POST
+            user.save()
+            messages.success(request, 'Notification settings updated successfully.')
+
+    # Render the settings page with current user data
+    context = {
+        'user': user,
+    }
+    return render(request, 'sofmakeapp/settings.html', context)
+
+
