@@ -1,0 +1,159 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block meta %}
+    <title>Software Hub - Dashboard</title>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block basecontent %}
+    <div class="sidebar" id="sidebar">
+        <div class="p-3 d-flex align-items-center">
+            <img src="{% static "img/logo.png" %}" style="width:30px" alt="" srcset="">
+            <span class="nav-text ms-2 fs-5">Sofmake</span>
+        </div>
+        <nav class="nav flex-column">
+            <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %} active {% endif %}" href="{% url 'dashboard' %}" data-page="dashboard">
+                <i class="bi bi-speedometer2"></i>
+                <span class="nav-text">Dashboard</span>
+            </a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'browse_software' %} active {% endif %}" href="{% url 'browse_software' %}" data-page="browse">
+                <i class="bi bi-grid"></i>
+                <span class="nav-text">Browse Software</span>
+            </a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'my_software' %} active {% endif %}" href="{% url 'my_software' %}" data-page="mysoftware">
+                <i class="bi bi-collection"></i>
+                <span class="nav-text">My Software</span>
+            </a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'my_devices' %} active {% endif %}" href="{% url 'my_devices' %}" data-page="devices">
+                <i class="bi bi-laptop"></i>
+                <span class="nav-text">My Devices</span>
+            </a>
+        </nav>
+        <div class="bottom-menu">
+            <a class="nav-link {% if request.resolver_match.url_name == 'setting' %} active {% endif %}" href="{% url 'setting' %}" data-page="settings">
+                <i class="bi bi-gear"></i>
+                <span class="nav-text">Settings</span>
+            </a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'logout' %} active {% endif %}" href="{% url 'logout' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="toggle-sidebar" id="toggleSidebar">
+        <i class="bi bi-chevron-left"></i>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        {% block dashboardcontent %}
+            <!-- Dashboard Page -->
+            <div class="tab-content active" id="dashboard">
+                <div class="px-5 py-3">
+                    <h2 class="mb-4">Dashboard</h2>
+                    
+                    <!-- Summary Cards Row -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2">Active Subscriptions</h6>
+                                    <h2 class="card-title mb-0">3</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2">Active Devices</h6>
+                                    <h2 class="card-title mb-0">5</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card bg-warning text-white">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2">Days Until Renewal</h6>
+                                    <h2 class="card-title mb-0">15</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2">Total Spend</h6>
+                                    <h2 class="card-title mb-0">$149</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Subscriptions -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-lg-8">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <h5 class="card-title mb-0">Active Subscriptions</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Software</th>
+                                                    <th>Status</th>
+                                                    <th>Devices</th>
+                                                    <th>Expires</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Pro Developer IDE</td>
+                                                    <td><span class="badge bg-success">Active</span></td>
+                                                    <td>2/3</td>
+                                                    <td>Dec 31, 2024</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Notifications -->
+                        <div class="col-12 col-lg-4">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <h5 class="card-title mb-0">Notifications</h5>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="list-group list-group-flush">
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Subscription Expiring</h6>
+                                                <small class="text-muted">3 days ago</small>
+                                            </div>
+                                            <p class="mb-1">Your Pro Developer IDE subscription expires in 15 days.</p>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">New Device Login</h6>
+                                                <small class="text-muted">1 day ago</small>
+                                            </div>
+                                            <p class="mb-1">New login detected from MacBook Pro in New York.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock dashboardcontent %}
+    </div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/dashboard.js' %}?v={% now 'U' %}"></script>
+{% endblock %}
