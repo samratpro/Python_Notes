@@ -8,7 +8,9 @@ urlpatterns = [
     
     path('login/', views.login, name='login'),   
     path('logout', views.logout, name='logout'),  
-     
+
+    path('setting', views.setting, name='setting'),   
+    
     path('register', views.register, name='register'),   
     path('activate/<str:activation_code>/', views.activate_account, name='activate_account'),  
     
