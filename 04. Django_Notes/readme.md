@@ -29,6 +29,10 @@ Ctrl + C   # server stop
 python manage.py makemigrations
 python manage.py migrate
 ```
+```bash
+python manage.py migrate appname 000X --fake  # Replace 000X
+python manage.py migrate appname
+```
 ### 05. Clean Migrations
 File : .env
 ```
