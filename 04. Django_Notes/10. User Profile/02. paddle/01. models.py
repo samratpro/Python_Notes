@@ -9,13 +9,13 @@ class CreditPackage(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=50)
     credits = models.IntegerField(default=50000)
     days = models.IntegerField(default=30)
-    product_id = models.CharField(max_length=150, null=True, blank=True)
+    product_id = models.CharField(max_length=150, null=True, blank=True)   # inputed from paddle
     def __str__(self):
         return self.name
 
 class PaddleToken(models.Model):
-    client_token = models.CharField(max_length=150, null=True, blank=True)
-    api_key = models.CharField(max_length=150, null=True, blank=True)
+    client_token = models.CharField(max_length=150, null=True, blank=True)  # inputed from paddle
+    api_key = models.CharField(max_length=150, null=True, blank=True)       # inputed from paddle
     def __str__(self):
         return "Paddle Tokens"
 
