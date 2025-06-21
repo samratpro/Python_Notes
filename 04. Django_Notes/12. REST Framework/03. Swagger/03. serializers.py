@@ -1,12 +1,14 @@
 from rest_framework import serializers
 from .models import Software
 
+# Default
+
 class SoftwareSerializer(serializers.ModelSerializer):
     class Meta:
         model = Software
         fields = '__all__'
 
-
+# Customize
 class DeviceRegistrationSerializer(serializers.Serializer):
     email = serializers.CharField(
         max_length=254,
