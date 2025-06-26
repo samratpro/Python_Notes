@@ -35,10 +35,10 @@ urlpatterns = [
          name='verify_license'),
 
     # API Router and Documentation
-    path('api/', include(router.urls)),
+    # path('api/', include(router.urls)),
     path('api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    # path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
 ]
 
 # Serve static files in debug mode
