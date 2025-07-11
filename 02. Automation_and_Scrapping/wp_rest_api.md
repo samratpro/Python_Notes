@@ -13,10 +13,15 @@ url = "https://your-wordpress-site.com/wp-json/wp/v2/posts"
 username = "your-username"
 password = "your-application-password"
 
+category_ids = [5, 12]   # e.g., 5 = parent category, 12 = subcategory
+tag_ids = [3, 8]         # tag IDs you got from wp-json/wp/v2/tags
+
 post_data = {
     "title": "Text Post",
     "content": "Test Content From App",
-    "status": "draft"  # 'publish' / 'schedule'
+    "status": "draft",  # 'publish' / 'schedule'
+    "categories": category_ids,
+    "tags": tag_ids
 }
 
 response = requests.post(url, auth=HTTPBasicAuth(username, password), json=post_data)
