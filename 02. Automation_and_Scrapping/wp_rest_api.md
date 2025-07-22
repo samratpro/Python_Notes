@@ -16,9 +16,12 @@ password = "your-application-password"
 category_ids = [5, 12]   # e.g., 5 = parent category, 12 = subcategory
 tag_ids = [3, 8]         # tag IDs you got from wp-json/wp/v2/tags
 
+
 post_data = {
     "title": "Text Post",
-    "content": "Test Content From App",
+    "slug": "",
+    "content": 'content',
+    "excerpt": 'excerpt content',
     "status": "draft",  # 'publish' / 'schedule'
     "categories": category_ids,
     "tags": tag_ids
