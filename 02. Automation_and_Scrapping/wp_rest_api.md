@@ -235,3 +235,142 @@ def feature_image(keyword, headers, website_url):
         print(f'error : {str(ops)}\n\n')
         return 0
 ```
+## 06. Auto Image Upload
+```py
+import requests
+from requests.auth import HTTPBasicAuth
+from urllib.parse import urlparse
+
+username = "admin"
+password = ""
+
+# Cache for uploaded image URLs
+uploaded_images = {}
+def img_upload(img_link):
+    if img_link in uploaded_images:
+        print(f"[DEBUG] Using cached image URL: {img_link} -> {uploaded_images[img_link]}")
+        return uploaded_images[img_link]
+    try:
+        img_response = requests.get(img_link, stream=True)
+        if img_response.status_code == 200:
+            filename = urlparse(img_link).path.split("/")[-1]
+            content_type_map = {
+                '.jpg': 'image/jpeg',
+                '.jpeg': 'image/jpeg',
+                '.png': 'image/png',
+                '.gif': 'image/gif',
+                '.bmp': 'image/bmp',
+                '.webp': 'image/webp',
+                '.svg': 'image/svg+xml',
+                '.ico': 'image/x-icon'
+            }
+            extension = '.' + filename.rsplit('.', 1)[-1].lower() if '.' in filename else ''
+            content_type = content_type_map.get(extension, img_response.headers.get("content-type", "image/jpeg"))
+            headers = {
+                "Content-Disposition": f"attachment; filename={filename}",
+                "Content-Type": content_type
+            }
+            wp_media_url = "https://domain.org/wp-json/wp/v2/media"
+            wp_response = requests.post(
+                wp_media_url,
+                auth=HTTPBasicAuth(username, password),
+                headers=headers,
+                data=img_response.content
+            )
+            if wp_response.status_code == 201:
+                new_img_url = wp_response.json().get("source_url")
+                uploaded_images[img_link] = new_img_url
+                print(f"[DEBUG] Image uploaded successfully: {img_link} -> {new_img_url}")
+                return new_img_url
+            else:
+                print(f"[DEBUG] Failed to upload image: {img_link}, Status: {wp_response.status_code}")
+        else:
+            print(f"[DEBUG] Failed to download image: {img_link}, Status: {img_response.status_code}")
+    except Exception as e:
+        print(f"[DEBUG] Error uploading image {img_link}: {str(e)}")
+    return img_link
+```
+## 07. File Upload
+```py
+import requests
+from requests.auth import HTTPBasicAuth
+from urllib.parse import urlparse
+
+username = "admin"
+password = "Bpqs "
+
+uploaded_files = {}  # cache to avoid duplicate uploads
+
+
+def file_upload(file_url):
+    if file_url in uploaded_files:
+        print(f"[DEBUG] Using cached file URL: {file_url} -> {uploaded_files[file_url]}")
+        return uploaded_files[file_url]
+
+    try:
+        response = requests.get(file_url, stream=True)
+        if response.status_code == 200:
+            filename = urlparse(file_url).path.split("/")[-1]
+            extension = '.' + filename.split('.')[-1].lower() if '.' in filename else ''
+
+            content_type_map = {
+                # 📄 Documents
+                ".pdf": "application/pdf",
+                ".doc": "application/msword",
+                ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                ".ppt": "application/vnd.ms-powerpoint",
+                ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                ".xls": "application/vnd.ms-excel",
+                ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                ".zip": "application/zip",
+                ".rar": "application/vnd.rar",
+                ".txt": "text/plain",
+
+                # 🖼️ Images (optional, for completeness)
+                ".jpg": "image/jpeg",
+                ".jpeg": "image/jpeg",
+                ".png": "image/png",
+                ".gif": "image/gif",
+                ".webp": "image/webp",
+                ".bmp": "image/bmp",
+                ".svg": "image/svg+xml",
+
+                # 🎵 Audio
+                ".mp3": "audio/mpeg",
+                ".ogg": "audio/ogg",
+                ".wav": "audio/wav",
+
+                # 🎥 Video
+                ".mp4": "video/mp4",
+                ".webm": "video/webm"
+            }
+
+            content_type = content_type_map.get(extension,
+                                                response.headers.get("content-type", "application/octet-stream"))
+            headers = {
+                "Content-Disposition": f"attachment; filename={filename}",
+                "Content-Type": content_type
+            }
+
+            wp_media_url = "https://domain.org/wp-json/wp/v2/media"
+            wp_response = requests.post(
+                wp_media_url,
+                auth=HTTPBasicAuth(username, password),
+                headers=headers,
+                data=response.content
+            )
+
+            if wp_response.status_code == 201:
+                new_url = wp_response.json().get("source_url")
+                uploaded_files[file_url] = new_url
+                print(f"[DEBUG] File uploaded successfully: {file_url} -> {new_url}")
+                return new_url
+            else:
+                print(f"[DEBUG] Failed to upload file: {file_url}, Status: {wp_response.status_code}")
+        else:
+            print(f"[DEBUG] Failed to download file: {file_url}, Status: {response.status_code}")
+    except Exception as e:
+        print(f"[DEBUG] Error uploading file {file_url}: {str(e)}")
+
+    return file_url
+```
