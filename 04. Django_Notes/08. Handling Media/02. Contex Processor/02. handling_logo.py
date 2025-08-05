@@ -61,6 +61,7 @@ TEMPLATES = [
     },
 ]
 
+# python manage.py makemigrations appservice
 
 # Need to create folder
 # 🔽 media
