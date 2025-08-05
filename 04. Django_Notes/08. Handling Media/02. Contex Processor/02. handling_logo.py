@@ -80,11 +80,11 @@ def logo_context(request):
 
 # base.html
 <head>
-  <link rel="shortcut icon" type="image/png" href="{{logos.icon_img.url}}" />     # ..... For icon
+  <link rel="shortcut icon" type="image/png" href="{{logo.icon_img.url}}" />     # ..... For icon
 </head>
 
 # dasbboard.html
-<img src="{{logos.logo_img.url}}" width="180" alt="" />                          # ---------- Logo 
+<img src="{{logo.logo_img.url}}" width="180" alt="" />                          # ---------- Logo 
 
 
 
