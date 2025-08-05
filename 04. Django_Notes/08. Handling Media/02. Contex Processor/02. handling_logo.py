@@ -55,7 +55,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                  '..............',
-                'App_folder.logo_processors_file.logo_context_function',   # ******************************
+                'App_folder.logo_processors_file.logo_context_function',   # example appservice.context_processors.logo_context
             ],
         },
     },
