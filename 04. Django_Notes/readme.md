@@ -118,3 +118,36 @@ clean.py
 .env
 manage.py
 ```
+## 15. Secure Admin
+```py
+# yourapp/middleware.py
+from django.http import HttpResponseForbidden
+
+ALLOWED_ADMIN_IPS = ['123.45.67.89', '::1']  # Put your trusted IPs here (localhost ::1)
+
+class AdminIPRestrictionMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        # Check if request is to admin URL
+        if request.path.startswith('/metricsoptimize1298bo/'):
+            ip = request.META.get('REMOTE_ADDR')
+            if ip not in ALLOWED_ADMIN_IPS:
+                return HttpResponseForbidden("Forbidden: You are not allowed to access this resource.")
+        return self.get_response(request)
+```
+settings
+```py
+MIDDLEWARE = [
+    'yourapp.middleware.AdminIPRestrictionMiddleware',
+    # default middlewares below
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+```
