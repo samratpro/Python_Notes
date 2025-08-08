@@ -28,6 +28,7 @@ Ctrl + C   # server stop
 ```bash
 python manage.py makemigrations
 python manage.py migrate
+python3 manage.py makemigrations app_name --empty --name force_update
 ```
 ```bash
 python manage.py migrate appname 000X --fake  # Replace 000X
