@@ -8,6 +8,7 @@ Databe handle without any ORM - CRUD
 ### i. Databse Handle with SQLAlchemy ORM
 ```bash
 pip install sqlalchemy
+pip install sqlalchemy --no-deps
 pip install sqlalchemy alembic   # for db migrations
 ```
 DB Migrations
