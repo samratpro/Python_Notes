@@ -25,3 +25,11 @@ in nginx before location ~ \.well-known
 ```py
 env/bin/python3 manage.py collectstatic --noinput
 ```
+## Step 6: For Custom 404
+```PY
+# core/views.py
+from django.shortcuts import render
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
+```
