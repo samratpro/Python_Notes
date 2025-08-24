@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Page Not Found - 500</title>
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block basecontent %}
+<section class="not-found-section text-center py-5">
+    <div class="container">
+        <h1>400 Page</h1>
+        <h2>Oops! Page not found.</h2>
+        <p>The page you are looking for might have been removed or the URL is incorrect.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary mt-3">Go to Home</a>
+    </div>
+</section>
+{% endblock %}
