@@ -207,6 +207,7 @@ def load_cookies_from_file(file_path):
     return cookie_jar
 
 # Load cookies from the file
+# cookie copy plugin https://chromewebstore.google.com/detail/copy-cookies/jcbpglbplpblnagieibnemmkiamekcdg
 cookie_jar = load_cookies_from_file('cookies.txt')
 
 # Define a list of User-Agent strings
