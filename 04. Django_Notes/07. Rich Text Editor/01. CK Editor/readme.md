@@ -177,6 +177,12 @@ def blog_detail(request, slug):
     }
     return render(request, 'blog_detail.html', context)
 ```
+in Jinja
+```html
+    <div class="content-wrapper">
+        {{ post_content|safe }}
+    </div>
+```
 JS way
 ```js
 document.querySelectorAll('oembed').forEach(embed => {
