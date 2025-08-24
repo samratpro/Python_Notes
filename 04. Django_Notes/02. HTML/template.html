@@ -1,5 +1,5 @@
 <!-- Post Method -->
-<form action="" method="post">
+<form action="{% url 'home' %}" method="post">
                                  <!-- Warning ........................................ form="usrform" We can't use like this type in our HTML element -->
 {% csrf_token %}                 <!-- ................................................ {% csrf_token %} is mendatory for post method -->
     <input name="Name">          <!-- ................................................ name="value" will pass as a veriable -->
@@ -16,7 +16,7 @@
 
 <!-- Get Method -->
 
-<form action="" method="get">
+<form action="{% url 'home' %}" method="get">
     <input name="Name">          <!-- ................................................ name="value" will pass as a veriable -->
     <input name="Phone">
     <input name="Email">
