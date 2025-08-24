@@ -20,9 +20,16 @@ class PostCetgory(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *arg, **kwargs):
-        self.slug = slugify(self.name)
-        super().save(*arg, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            slug = base_slug
+            counter = 1
+            while BlogPost.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
 class BlogPost(models.Model):
     id = models.AutoField(primary_key=True)  # Auto-incrementing serial number, 1,2,3,4,5,6....  must be in to avoid future error
@@ -55,9 +62,16 @@ class BlogPost(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *arg, **kwargs):
-        self.slug = slugify(self.title)
-        super().save(*arg, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            slug = base_slug
+            counter = 1
+            while BlogPost.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
 
 # ********* ForeignKey *** vs *** OneToOneField *** vs *** ManyToManyField ****************
