@@ -135,6 +135,52 @@ CKEDITOR_5_CONFIGS = {
 
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
 ```
+## Video embed
+```js
+document.querySelectorAll('oembed').forEach(embed => {
+    const url = embed.getAttribute('url');
+    let videoId = null;
+    let startTime = 0;
+
+    // Extract video ID and timestamp
+    const vMatch = url.match(/[?&]v=([^&]+)/);
+    if (vMatch) videoId = vMatch[1];
+
+    const tMatch = url.match(/[?&]t=(\d+)s?/);
+    if (tMatch) startTime = tMatch[1];
+
+    if (videoId) {
+        embed.outerHTML = `
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/${videoId}?start=${startTime}&rel=0"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>`;
+    }
+});
+
+```
+```html
+<style type="text/css" media="all">
+    .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+```
 
 ### 02. urls.py ( Project Dir)
 CK
