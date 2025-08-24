@@ -1,8 +1,23 @@
 ## Step 1: Debug False in Settings
-## Step 2: Remove debug if in project urls.py
+## Step 2: Configure ngnix configurations
+in nginx before location ~ \.well-known
 ```py
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    location /static/ {
+        alias /www/wwwroot/service_site/staticfiles/;
+        expires 30d;  # Cache static files for 30 days
+        access_log off;  # Reduce logging for static files
+    }
+
+    # Media files
+    location /media/ {
+        alias /www/wwwroot/service_site/media/;
+        access_log off;
+    }
+
+    # Directory verification related settings for one-click application for SSL certificate
+    location ~ \.well-known{
+        allow all;
+    }
 ```
 ## Step 3: Create 404.html, 500.html page
 ## Step 4: Create 404.html, 500.html page
