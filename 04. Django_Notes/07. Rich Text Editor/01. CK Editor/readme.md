@@ -136,6 +136,56 @@ CKEDITOR_5_CONFIGS = {
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
 ```
 ## Video embed
+Views way
+```py
+def convert_oembed_to_iframe(html):
+    """
+    Converts <oembed> tags in CKEditor content to responsive <iframe> HTML.
+    """
+    def replacer(match):
+        url = match.group(1)
+        video_id = None
+        start_time = 0
+
+        # Extract video ID
+        v_match = re.search(r'[?&]v=([^&]+)', url)
+        if v_match:
+            video_id = v_match.group(1)
+
+        # Extract start timestamp if exists
+        t_match = re.search(r'[?&]t=(\d+)', url)
+        if t_match:
+            start_time = t_match.group(1)
+
+        if video_id:
+            return f'''
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/{video_id}?start={start_time}&rel=0"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>'''
+        return ''
+
+    # Replace all <oembed url="..."></oembed> with iframe
+    return re.sub(r'<oembed\s+url="([^"]+)"\s*>\s*</oembed>', replacer, html, flags=re.IGNORECASE)
+
+def blog_detail(request, slug):
+    post = get_object_or_404(BlogPost, slug=slug)
+    recent_posts = BlogPost.objects.filter(status='Publish').exclude(id=post.id).order_by('-publish_date')[:3]
+
+    # Convert oembed to iframe before rendering
+    post_content = convert_oembed_to_iframe(post.text)
+
+    context = {
+        'post': post,
+        'post_content': post_content,
+        'recent_posts': recent_posts,
+    }
+    return render(request, 'blog_detail.html', context)
+```
+JS way
 ```js
 document.querySelectorAll('oembed').forEach(embed => {
     const url = embed.getAttribute('url');
