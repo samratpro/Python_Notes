@@ -138,21 +138,15 @@ CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
 ## Video embed
 Views way
 ```py
+import re
 def convert_oembed_to_iframe(html):
-    """
-    Converts <oembed> tags in CKEditor content to responsive <iframe> HTML.
-    """
     def replacer(match):
         url = match.group(1)
         video_id = None
         start_time = 0
-
-        # Extract video ID
         v_match = re.search(r'[?&]v=([^&]+)', url)
         if v_match:
             video_id = v_match.group(1)
-
-        # Extract start timestamp if exists
         t_match = re.search(r'[?&]t=(\d+)', url)
         if t_match:
             start_time = t_match.group(1)
@@ -167,8 +161,6 @@ def convert_oembed_to_iframe(html):
                 </iframe>
             </div>'''
         return ''
-
-    # Replace all <oembed url="..."></oembed> with iframe
     return re.sub(r'<oembed\s+url="([^"]+)"\s*>\s*</oembed>', replacer, html, flags=re.IGNORECASE)
 
 def blog_detail(request, slug):
