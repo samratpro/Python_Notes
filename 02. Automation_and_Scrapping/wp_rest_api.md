@@ -173,7 +173,7 @@ def create_category(cat_name, website_url, headers):
 ```py
 
 def create_img(file_path, username, password):
-        media = {'file': open(file_path), 'rb')}
+        media = {'file': open(file_path, 'rb')}
         image = requests.post(json_url + '/media',  auth=HTTPBasicAuth(username, password), files=media)
         post_id = int(json.loads(image.content.decode('utf-8'))['id'])
         # image_title = keyword.replace('-', ' ').split('.')[0]
