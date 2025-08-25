@@ -24,7 +24,8 @@ post_data = {
     "excerpt": 'excerpt content',
     "status": "draft",  # 'publish' / 'schedule'
     "categories": category_ids,
-    "tags": tag_ids
+    "tags": tag_ids,
+    'featured_media': int(image_id)
 }
 
 response = requests.post(url, auth=HTTPBasicAuth(username, password), json=post_data)
