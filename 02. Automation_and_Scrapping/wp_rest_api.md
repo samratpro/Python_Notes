@@ -172,8 +172,9 @@ def create_category(cat_name, website_url, headers):
 ## 04. Create Image
 ```py
 
-def create_img(file_path, username, password):
+def create_img(file_path, website_url, username, password):
         media = {'file': open(file_path, 'rb')}
+        json_url = f"{website_url}/wp-json/wp/v2/media"
         image = requests.post(json_url + '/media',  auth=HTTPBasicAuth(username, password), files=media)
         post_id = int(json.loads(image.content.decode('utf-8'))['id'])
         # image_title = keyword.replace('-', ' ').split('.')[0]
