@@ -1,3 +1,5 @@
+## Best practice is iclude in App folder
+
 from rest_framework import serializers
 from .models import Software
 
