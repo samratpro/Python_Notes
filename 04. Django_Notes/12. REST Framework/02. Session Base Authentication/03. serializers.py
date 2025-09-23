@@ -1,4 +1,5 @@
 # Important part for API serialization
+## Best practice is iclude in App folder
 
 # https://www.django-rest-framework.org/api-guide/fields/
 
