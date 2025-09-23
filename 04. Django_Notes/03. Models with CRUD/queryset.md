@@ -47,3 +47,69 @@ Document: https://docs.djangoproject.com/en/4.2/ref/models/querysets/#id4
 | `icontains non casesensitive ` | `model.objects.filter(field_name__icontains='value')` | Here `You` and `you` is Same |
 | `id/int list in` | `model.objects.filter(id__in=[1, 2, 3])` | it can take multiple or Single int values, here id is int datatype |
 | `name/str list in` | `model.objects.filter(name__in=['name1', 'name2', 'name3'])` | it can take multiple or Single str values, here name is str datatype |
+
+## Example an efficient query
+```py
+qs = University.objects.all() # Ready for query
+# Optimize related lookups
+qs = qs.select_related('country', 'city').prefetch_related('bachelor_subjects', 'master_subjects', 'doctorate_subjects')
+
+degreelevel = norm(degreelevel)
+subjectname = norm(subjectname)
+continent = norm(continent)
+country = norm(country)
+city = norm(city)
+
+qs = University.objects.all()
+# Optimize related lookups
+qs = qs.select_related('country', 'city').prefetch_related('bachelor_subjects', 'master_subjects', 'doctorate_subjects')
+
+# Continent filter (simple char field)
+if continent:
+    qs = qs.filter(continent__iexact=continent)
+
+# Country filter (by name or slug)
+if country:
+    qs = qs.filter(Q(country__name__iexact=country) | Q(country__slug__iexact=country))
+
+# City filter (by name or slug)
+if city:
+    qs = qs.filter(Q(city__name__iexact=city) | Q(city__slug__iexact=city))
+
+# Subject filter by degree level
+if subjectname:
+    dl = (degreelevel or '').lower() if degreelevel else ''
+    subject_q = (
+        Q(bachelor_subjects__name__iexact=subjectname) | Q(bachelor_subjects__slug__iexact=subjectname) |
+        Q(master_subjects__name__iexact=subjectname) | Q(master_subjects__slug__iexact=subjectname) |
+        Q(doctorate_subjects__name__iexact=subjectname) | Q(doctorate_subjects__slug__iexact=subjectname)
+    )
+    if dl in ('bachelor', 'bachelors', "bachelor's"):
+        subject_q = Q(bachelor_subjects__name__iexact=subjectname) | Q(bachelor_subjects__slug__iexact=subjectname)
+    elif dl in ('master', 'masters', "master's"):
+        subject_q = Q(master_subjects__name__iexact=subjectname) | Q(master_subjects__slug__iexact=subjectname)
+    elif dl in ('doctorate', 'phd', 'ph.d'):
+        subject_q = Q(doctorate_subjects__name__iexact=subjectname) | Q(doctorate_subjects__slug__iexact=subjectname)
+    qs = qs.filter(subject_q)
+
+qs = qs.distinct().order_by('world_rank')[:20]
+serializer = UniversityListSerializer(qs, many=True)
+response_data = {
+    'status': 'success',
+    'filters': {
+        'degreelevel': degreelevel or 'All',
+        'subjectname': subjectname or 'All',
+        'continent': continent or 'All',
+        'country': country or 'All',
+        'city': city or 'All',
+    },
+    'count': len(serializer.data),
+    'results': serializer.data,
+}
+logger.info("university_list served %s results", response_data['count'])
+return Response(response_data, status=status.HTTP_200_OK)
+except Exception as e:
+logger.exception("Error in university_list: %s", str(e))
+return Response({'status': 'error', 'message': f'Internal server error: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+```
