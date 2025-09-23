@@ -1,4 +1,4 @@
 ```bash
-pip install djangorestframework, drf-yasg, drf-spectacular
+pip install djangorestframework drf-yasg drf-spectacular
 
 ```
