@@ -1,3 +1,5 @@
+## Best practice is iclude in App folder
+
 from app.models import DataList
 from rest_framework import serializers
 
