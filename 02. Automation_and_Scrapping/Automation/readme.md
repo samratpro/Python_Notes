@@ -26,6 +26,7 @@ https://chromewebstore.google.com/detail/selectorshub-xpath-helper/ndgimibanhlab
 ```
 text='Element Text Name"
 //button[.='Post']   # if text is exist in child level element of selected element
+//a[normalize-space()='Apply']
 ```
 ## 06. Find by CSS Selector
 ```
