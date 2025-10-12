@@ -66,6 +66,7 @@ Activate virtual Environment, if project in local environment:
 ```bash
 source env/scripts/activate
 pyuic6 -x gui_path.ui -o py_path.py
+pyuic6 -0 py_path.py gui_path.ui
 ```
 
 #### Load UI file
