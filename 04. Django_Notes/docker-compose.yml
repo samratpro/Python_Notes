@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  resume_manager:
+    build: .
+    container_name: resume_manager_django
+    restart: unless-stopped
+    ports:
+      - "8811:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    environment:
+      - DEBUG=False
+      - USE_POSTGRES=True
+      - DB_NAME=appdb
+      - DB_USER=postgres
+      - DB_PASSWORD=securepassword123
+      - DB_HOST=db
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: securepassword123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  static_volume:
+  media_volume: 
+  postgres_data:
