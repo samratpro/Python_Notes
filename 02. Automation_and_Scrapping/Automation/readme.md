@@ -26,6 +26,11 @@ https://chromewebstore.google.com/detail/selectorshub-xpath-helper/ndgimibanhlab
 ```
 //element_name[contains(@class, 'jobTitle')]
 ```
+## 04.2 Find element by contain text
+```
+//tr[contains(.,'Location:')]
+# location: is contain text here
+```
 ## 05. Find by Text
 ```
 text='Element Text Name"
