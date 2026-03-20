@@ -31,6 +31,10 @@ https://chromewebstore.google.com/detail/selectorshub-xpath-helper/ndgimibanhlab
 //tr[contains(.,'Location:')]
 # location: is contain text here
 ```
+## 04.3 Find element after contain text
+```
+//tr[contains(.,'Location:')]//td
+```
 ## 05. Find by Text
 ```
 text='Element Text Name"
